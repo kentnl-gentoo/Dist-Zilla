@@ -1,16 +1,10 @@
 package Dist::Zilla::Plugin::PkgVersion;
+our $VERSION = '1.001';
+
 # ABSTRACT: add a $VERSION to your packages
 use Moose;
 with 'Dist::Zilla::Role::FileMunger';
 
-=head1 DESCRIPTION
-
-This plugin will add a line like the following to each package in each Perl
-module or program (more or less) within the distribution:
-
-  our $VERSION = 0.001; # where 0.001 is the version of the dist
-
-=cut
 
 sub munge_file {
   my ($self, $file) = @_;
@@ -47,3 +41,37 @@ sub munge_perl {
 __PACKAGE__->meta->make_immutable;
 no Moose;
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::Plugin::PkgVersion - add a $VERSION to your packages
+
+=head1 VERSION
+
+version 1.001
+
+=head1 DESCRIPTION
+
+This plugin will add a line like the following to each package in each Perl
+module or program (more or less) within the distribution:
+
+    our $VERSION = 0.001; # where 0.001 is the version of the dist
+
+=head1 AUTHOR
+
+  Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo SIGNES.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as perl itself.
+
+=cut 
+
+

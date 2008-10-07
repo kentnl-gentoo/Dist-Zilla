@@ -1,17 +1,12 @@
 package Dist::Zilla::Plugin::MakeMaker;
+our $VERSION = '1.001';
+
 # ABSTRACT: build a Makefile.PL that uses ExtUtils::MakeMaker
 use Moose;
 use Moose::Autobox;
 with 'Dist::Zilla::Role::InstallTool';
 with 'Dist::Zilla::Role::TextTemplate';
 
-=head1 DESCRIPTION
-
-This plugin will produce an L<ExtUtils::MakeMaker>-powered F<Makefile.PL> for
-the distribution.  It loaded, the L<Manifest|Dist::Zilla::Plugin::Manifest>
-plugin should also be loaded.
-
-=cut
 
 use Dist::Zilla::File::InMemory;
 
@@ -72,3 +67,36 @@ sub setup_installer {
 __PACKAGE__->meta->make_immutable;
 no Moose;
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::Plugin::MakeMaker - build a Makefile.PL that uses ExtUtils::MakeMaker
+
+=head1 VERSION
+
+version 1.001
+
+=head1 DESCRIPTION
+
+This plugin will produce an L<ExtUtils::MakeMaker>-powered F<Makefile.PL> for
+the distribution.  It loaded, the L<Manifest|Dist::Zilla::Plugin::Manifest>
+plugin should also be loaded.
+
+=head1 AUTHOR
+
+  Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo SIGNES.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as perl itself.
+
+=cut 
+
+

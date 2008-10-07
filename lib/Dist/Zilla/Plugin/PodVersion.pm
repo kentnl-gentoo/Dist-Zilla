@@ -1,16 +1,10 @@
 package Dist::Zilla::Plugin::PodVersion;
+our $VERSION = '1.001';
+
 # ABSTRACT: add a VERSION head1 to each Perl document
 use Moose;
 with 'Dist::Zilla::Role::FileMunger';
 
-=head1 DESCRIPTION
-
-This plugin adds a C<=head1 VERSION> section to most perl files in the
-distribution, indicating the version of the dist being build (and, thus, the
-version of the module, assuming L<PkgVersion|Dist::Zilla::Plugin::PkgVersion>
-is also loaded.
-
-=cut
 
 sub munge_file {
   my ($self, $file) = @_;
@@ -67,3 +61,37 @@ sub munge_pod {
 __PACKAGE__->meta->make_immutable;
 no Moose;
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::Plugin::PodVersion - add a VERSION head1 to each Perl document
+
+=head1 VERSION
+
+version 1.001
+
+=head1 DESCRIPTION
+
+This plugin adds a C<=head1 VERSION> section to most perl files in the
+distribution, indicating the version of the dist being build (and, thus, the
+version of the module, assuming L<PkgVersion|Dist::Zilla::Plugin::PkgVersion>
+is also loaded.
+
+=head1 AUTHOR
+
+  Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo SIGNES.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as perl itself.
+
+=cut 
+
+

@@ -1,16 +1,9 @@
 package Dist::Zilla::Role::File;
+our $VERSION = '1.001';
+
 # ABSTRACT: something that can act like a file
 use Moose::Role;
 
-=head1 DESCRIPTION
-
-This role describes a file that may be written into the shipped distribution.
-
-=attr name
-
-This is the name of the file to be written out.
-
-=cut
 
 has name => (
   is   => 'rw',
@@ -18,24 +11,11 @@ has name => (
   required => 1,
 );
 
-=attr added_by
-
-This is a string describing when and why the file was added to the
-distribution.  It will generally be set by a plugin implementing the
-L<FileInjector|Dist::Zilla::Role::FileInjector> role.
-
-=cut
 
 has added_by => (
   is => 'ro',
 );
 
-=attr install_type
-
-This attribute may be set to something indicating where the file will be
-installed.  For now, its meaning is pretty up in the air.
-
-=cut
 
 has install_type => (
   is => 'rw',
@@ -46,3 +26,51 @@ has install_type => (
 
 no Moose::Role;
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::Role::File - something that can act like a file
+
+=head1 VERSION
+
+version 1.001
+
+=head1 DESCRIPTION
+
+This role describes a file that may be written into the shipped distribution.
+
+=head1 ATTRIBUTES
+
+=head2 name
+
+This is the name of the file to be written out.
+
+=head2 added_by
+
+This is a string describing when and why the file was added to the
+distribution.  It will generally be set by a plugin implementing the
+L<FileInjector|Dist::Zilla::Role::FileInjector> role.
+
+=head2 install_type
+
+This attribute may be set to something indicating where the file will be
+installed.  For now, its meaning is pretty up in the air.
+
+=head1 AUTHOR
+
+  Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo SIGNES.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as perl itself.
+
+=cut 
+
+

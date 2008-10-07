@@ -1,6 +1,8 @@
 use strict;
 use warnings;
 package DZ1;
+our $VERSION = '1.001';
+
 # ABSTRACT: this is a sample package for testing Dist::Zilla;
 
 sub main {

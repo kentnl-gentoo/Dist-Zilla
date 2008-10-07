@@ -1,16 +1,10 @@
 package Dist::Zilla::Plugin::BumpVersion;
+our $VERSION = '1.001';
+
 # ABSTRACT: bump the configured version number by one before building
 use Moose;
 with 'Dist::Zilla::Role::BeforeBuild';
 
-=head1 SYNOPSIS
-
-If loaded, this plugin will ensure that the distribution's version number is
-bumped up by one (in the smallest already-defined version units) before
-building begins.  In other words, if F<dist.ini>'s version reads C<0.002> then
-the newly built dist will be C<0.003>.
-
-=cut
 
 sub before_build {
   my ($self) = @_;
@@ -35,3 +29,37 @@ sub before_build {
 __PACKAGE__->meta->make_immutable;
 no Moose;
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::Plugin::BumpVersion - bump the configured version number by one before building
+
+=head1 VERSION
+
+version 1.001
+
+=head1 SYNOPSIS
+
+If loaded, this plugin will ensure that the distribution's version number is
+bumped up by one (in the smallest already-defined version units) before
+building begins.  In other words, if F<dist.ini>'s version reads C<0.002> then
+the newly built dist will be C<0.003>.
+
+=head1 AUTHOR
+
+  Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo SIGNES.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as perl itself.
+
+=cut 
+
+

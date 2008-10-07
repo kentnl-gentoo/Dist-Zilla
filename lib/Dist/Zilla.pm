@@ -1,4 +1,6 @@
 package Dist::Zilla;
+our $VERSION = '1.001';
+
 # ABSTRACT: distribution builder; installer not included!
 use Moose;
 use Moose::Autobox;
@@ -13,13 +15,6 @@ use String::RewritePrefix;
 use Dist::Zilla::File::OnDisk;
 use Dist::Zilla::Role::Plugin;
 
-=attr name
-
-The name attribute (which is required) gives the name of the distribution to be
-built.  This is usually the name of the distribution's main module, with the
-double colons (C<::>) replaced with dashes.  For example: C<Dist-Zilla>.
-
-=cut
 
 has name => (
   is   => 'ro',
@@ -27,11 +22,6 @@ has name => (
   required => 1,
 );
 
-=attr version
-
-This is the version of the distribution to be created.
-
-=cut
 
 # XXX: *clearly* this needs to be really much smarter -- rjbs, 2008-06-01
 has version => (
@@ -40,12 +30,6 @@ has version => (
   required => 1,
 );
 
-=attr abstract
-
-This is a one-line summary of the distribution.  If none is given, one will be
-looked for in the L</main_module> of the dist.
-
-=cut
 
 has abstract => (
   is   => 'rw',
@@ -62,13 +46,6 @@ has abstract => (
   }
 );
 
-=attr main_module
-
-This is the module where Dist::Zilla might look for various defaults, like
-the distribution abstract.  By default, it's the shorted-named module in the
-distribution.  This is likely to change!
-
-=cut
 
 has main_module => (
   is   => 'ro',
@@ -89,12 +66,6 @@ has main_module => (
   },
 );
 
-=attr copyright_holder
-
-This is the name of the legal entity who holds the copyright on this code.
-This is a required attribute with no default!
-
-=cut
 
 has copyright_holder => (
   is   => 'ro',
@@ -102,11 +73,6 @@ has copyright_holder => (
   required => 1,
 );
 
-=attr copyright_year
-
-This is the year of copyright for the dist.  By default, it's this year.
-
-=cut
 
 has copyright_year => (
   is   => 'ro',
@@ -121,17 +87,6 @@ has copyright_year => (
   default => (localtime)[5] + 1900,
 );
 
-=attr license
-
-This is the L<Software::License|Software::License> object for this dist's
-license.  It will be created automatically, if possible, with the
-C<copyright_holder> and C<copyright_year> attributes.  If necessary, it will
-try to guess the license from the POD of the dist's main module.
-
-A better option is to set the C<license> name in the dist's config to something
-understandable, like C<Perl_5>.
-
-=cut
 
 has _license_class => (is => 'rw');
 
@@ -164,18 +119,6 @@ has license => (
   },
 );
 
-=attr authors
-
-This is an arrayref of author strings, like this:
-
-  [
-    'Ricardo Signes <rjbs@cpan.org>',
-    'X. Ample, Jr <example@example.biz>',
-  ]
-
-This is likely to change at some point in the near future.
-
-=cut
 
 has authors => (
   is   => 'ro',
@@ -183,12 +126,6 @@ has authors => (
   required => 1,
 );
 
-=attr files
-
-This is an arrayref of objects implementing L<Dist::Zilla::Role::File> that
-will, if left in this arrayref, be built into the dist.
-
-=cut
 
 has files => (
   is   => 'ro',
@@ -198,12 +135,6 @@ has files => (
   default  => sub { [] },
 );
 
-=attr root
-
-This is the root directory of the dist, as a L<Path::Class::Dir>.  It will
-nearly always be the current working directory in which C<dzil> was run.
-
-=cut
 
 has root => (
   is   => 'ro',
@@ -212,12 +143,6 @@ has root => (
   required => 1,
 );
 
-=attr plugins
-
-This is an arrayref of plugins that have been plugged into this Dist::Zilla
-object.
-
-=cut
 
 has plugins => (
   is   => 'ro',
@@ -225,11 +150,6 @@ has plugins => (
   default => sub { [ ] },
 );
 
-=attr built_in
-
-This is the L<Path::Class::Dir>, if any, in which the dist has been built.
-
-=cut
 
 has built_in => (
   is   => 'rw',
@@ -237,13 +157,6 @@ has built_in => (
   init_arg  => undef,
 );
 
-=attr prereq
-
-This is a hashref of module prerequisites.  This attribute is likely to get
-greatly overhauled, or possibly replaced with a method based on other
-(private?) attributes.
-
-=cut
 
 sub prereq {
   my ($self) = @_;
@@ -256,19 +169,6 @@ sub prereq {
   return $prereq;
 }
 
-=method from_config
-
-  my $zilla = Dist::Zilla->from_config(\%arg);
-
-This routine returns a new Zilla from the configuration in the current working
-directory.
-
-Valid arguments are:
-
-  config_class - the class to use to read the config
-                 default: Dist::Zilla::Config::INI
-
-=cut
 
 sub from_config {
   my ($class, $arg) = @_;
@@ -316,15 +216,6 @@ sub from_config {
   return $self;
 }
 
-=method plugins_with
-
-  my $roles = $zilla->plugins_with( -SomeRole );
-
-This method returns an arrayref containing all the Dist::Zilla object's plugins
-that perform a the named role.  If the given role name begins with a dash, the
-dash is replaced with "Dist::Zilla::Role::"
-
-=cut
 
 sub plugins_with {
   my ($self, $role) = @_;
@@ -335,15 +226,6 @@ sub plugins_with {
   return $plugins;
 }
 
-=method build_in
-
-  $zilla->build_in($root);
-
-This method builds the distribution in the given directory.  If no directory
-name is given, it defaults to DistName-Version.  If the distribution has
-already been built, an exception will be thrown.
-
-=cut
 
 sub build_in {
   my ($self, $root) = @_;
@@ -374,14 +256,6 @@ sub build_in {
   $self->built_in($build_root);
 }
 
-=method ensure_built_in
-
-  $zilla->ensure_built_in($root);
-
-This method behaves like C<L</build_in>>, but if the dist is already built in
-C<$root> (or the default root, if no root is given), no exception is raised.
-
-=cut
 
 sub ensure_built_in {
   my ($self, $root) = @_;
@@ -394,14 +268,6 @@ sub ensure_built_in {
   $self->build_in($root);
 }
 
-=method build_archive
-
-  $dist->build_archive($root);
-
-This method will ensure that the dist has been built in the given root, and
-will then build a tarball of that directory in the current directory.
-
-=cut
 
 sub build_archive {
   my ($self, $root) = @_;
@@ -480,38 +346,12 @@ sub _write_out_file {
   close $out_fh or die "error closing $to: $!";
 }
 
-=method test
-
-  $zilla->test;
-
-This method builds a new copy of the distribution and tests it.  If the tests
-appear to pass, it returns true.  If something goes wrong, it returns false.
-
-=cut
 
 sub test { die '...' }
 
-=method release
-
-  $zilla->release;
-
-This method releases the distribution, probably by uploading it to the CPAN.
-The actual effects of this method (as with most of the methods) is determined
-by the loaded plugins.
-
-=cut
 
 sub release { die '...' }
 
-=method log
-
-  $zilla->log($message);
-
-This method logs the given message.  In the future it will be a more useful and
-expressive method.  For now, it just prints the string after tacking on a
-newline.
-
-=cut
 
 # XXX: yeah, uh, do something more awesome -- rjbs, 2008-06-01
 sub log { ## no critic
@@ -523,7 +363,19 @@ __PACKAGE__->meta->make_immutable;
 no Moose;
 no MooseX::ClassAttribute;
 1;
-__END__
+
+
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla - distribution builder; installer not included!
+
+=head1 VERSION
+
+version 1.001
+
 =head1 DESCRIPTION
 
 Dist::Zilla builds distributions of code to be uploaded to the CPAN.  In this
@@ -535,3 +387,165 @@ published, released code, it can do much more than those tools, and is free to
 make much more ludicrous demands in terms of prerequisites.
 
 For more information, see L<Dist::Zilla::Tutorial>.
+
+=head1 ATTRIBUTES
+
+=head2 name
+
+The name attribute (which is required) gives the name of the distribution to be
+built.  This is usually the name of the distribution's main module, with the
+double colons (C<::>) replaced with dashes.  For example: C<Dist-Zilla>.
+
+=head2 version
+
+This is the version of the distribution to be created.
+
+=head2 abstract
+
+This is a one-line summary of the distribution.  If none is given, one will be
+looked for in the L</main_module> of the dist.
+
+=head2 main_module
+
+This is the module where Dist::Zilla might look for various defaults, like
+the distribution abstract.  By default, it's the shorted-named module in the
+distribution.  This is likely to change!
+
+=head2 copyright_holder
+
+This is the name of the legal entity who holds the copyright on this code.
+This is a required attribute with no default!
+
+=head2 copyright_year
+
+This is the year of copyright for the dist.  By default, it's this year.
+
+=head2 license
+
+This is the L<Software::License|Software::License> object for this dist's
+license.  It will be created automatically, if possible, with the
+C<copyright_holder> and C<copyright_year> attributes.  If necessary, it will
+try to guess the license from the POD of the dist's main module.
+
+A better option is to set the C<license> name in the dist's config to something
+understandable, like C<Perl_5>.
+
+=head2 authors
+
+This is an arrayref of author strings, like this:
+
+    [
+      'Ricardo Signes <rjbs@cpan.org>',
+      'X. Ample, Jr <example@example.biz>',
+    ]
+
+This is likely to change at some point in the near future.
+
+=head2 files
+
+This is an arrayref of objects implementing L<Dist::Zilla::Role::File> that
+will, if left in this arrayref, be built into the dist.
+
+=head2 root
+
+This is the root directory of the dist, as a L<Path::Class::Dir>.  It will
+nearly always be the current working directory in which C<dzil> was run.
+
+=head2 plugins
+
+This is an arrayref of plugins that have been plugged into this Dist::Zilla
+object.
+
+=head2 built_in
+
+This is the L<Path::Class::Dir>, if any, in which the dist has been built.
+
+=head2 prereq
+
+This is a hashref of module prerequisites.  This attribute is likely to get
+greatly overhauled, or possibly replaced with a method based on other
+(private?) attributes.
+
+=head1 METHODS
+
+=head2 from_config
+
+    my $zilla = Dist::Zilla->from_config(\%arg);
+
+This routine returns a new Zilla from the configuration in the current working
+directory.
+
+Valid arguments are:
+
+    config_class - the class to use to read the config
+                   default: Dist::Zilla::Config::INI
+
+=head2 plugins_with
+
+    my $roles = $zilla->plugins_with( -SomeRole );
+
+This method returns an arrayref containing all the Dist::Zilla object's plugins
+that perform a the named role.  If the given role name begins with a dash, the
+dash is replaced with "Dist::Zilla::Role::"
+
+=head2 build_in
+
+    $zilla->build_in($root);
+
+This method builds the distribution in the given directory.  If no directory
+name is given, it defaults to DistName-Version.  If the distribution has
+already been built, an exception will be thrown.
+
+=head2 ensure_built_in
+
+    $zilla->ensure_built_in($root);
+
+This method behaves like C<L</build_in>>, but if the dist is already built in
+C<$root> (or the default root, if no root is given), no exception is raised.
+
+=head2 build_archive
+
+    $dist->build_archive($root);
+
+This method will ensure that the dist has been built in the given root, and
+will then build a tarball of that directory in the current directory.
+
+=head2 test
+
+    $zilla->test;
+
+This method builds a new copy of the distribution and tests it.  If the tests
+appear to pass, it returns true.  If something goes wrong, it returns false.
+
+=head2 release
+
+    $zilla->release;
+
+This method releases the distribution, probably by uploading it to the CPAN.
+The actual effects of this method (as with most of the methods) is determined
+by the loaded plugins.
+
+=head2 log
+
+    $zilla->log($message);
+
+This method logs the given message.  In the future it will be a more useful and
+expressive method.  For now, it just prints the string after tacking on a
+newline.
+
+=head1 AUTHOR
+
+  Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo SIGNES.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as perl itself.
+
+=cut 
+
+
+
+__END__

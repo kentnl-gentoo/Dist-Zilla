@@ -1,25 +1,12 @@
 package Dist::Zilla::Plugin::PodWeaver;
+our $VERSION = '1.001';
+
 # ABSTRACT: do horrible things to POD, producing better docs
 use Moose;
 use Moose::Autobox;
 use List::MoreUtils qw(any);
 with 'Dist::Zilla::Role::FileMunger';
 
-=head1 WARNING
-
-This code is really, really sketchy.  It's crude and brutal and will probably
-break whatever it is you were trying to do.
-
-Eventually, this code will be really awesome.  I hope.  It will probably
-provide an interface to something more cool and sophisticated.  Until then,
-don't expect it to do anything but bring sorrow to you and your people.
-
-=head1 DESCRIPTION
-
-PodWeaver is a work in progress, which rips apart your kinda-POD and
-reconstructs it as boring old real POD.
-
-=cut
 
 sub munge_file {
   my ($self, $file) = @_;
@@ -214,3 +201,44 @@ sub _regroup {
 __PACKAGE__->meta->make_immutable;
 no Moose;
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::Plugin::PodWeaver - do horrible things to POD, producing better docs
+
+=head1 VERSION
+
+version 1.001
+
+=head1 WARNING
+
+This code is really, really sketchy.  It's crude and brutal and will probably
+break whatever it is you were trying to do.
+
+Eventually, this code will be really awesome.  I hope.  It will probably
+provide an interface to something more cool and sophisticated.  Until then,
+don't expect it to do anything but bring sorrow to you and your people.
+
+=head1 DESCRIPTION
+
+PodWeaver is a work in progress, which rips apart your kinda-POD and
+reconstructs it as boring old real POD.
+
+=head1 AUTHOR
+
+  Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo SIGNES.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as perl itself.
+
+=cut 
+
+

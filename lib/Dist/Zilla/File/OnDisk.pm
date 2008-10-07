@@ -1,15 +1,10 @@
 package Dist::Zilla::File::OnDisk;
+our $VERSION = '1.001';
+
 # ABSTRACT: a file that comes from your filesystem
 use Moose;
 with 'Dist::Zilla::Role::File';
 
-=head1 DESCRIPTION
-
-This represents a file stored on disk.  Its C<content> attribute is read from
-the originally given file name when first read, but is then kept in memory and
-may be altered by plugins.
-
-=cut
 
 has content => (
   is  => 'rw',
@@ -40,3 +35,36 @@ sub _read_file {
 __PACKAGE__->meta->make_immutable;
 no Moose;
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::File::OnDisk - a file that comes from your filesystem
+
+=head1 VERSION
+
+version 1.001
+
+=head1 DESCRIPTION
+
+This represents a file stored on disk.  Its C<content> attribute is read from
+the originally given file name when first read, but is then kept in memory and
+may be altered by plugins.
+
+=head1 AUTHOR
+
+  Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo SIGNES.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as perl itself.
+
+=cut 
+
+

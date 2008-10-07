@@ -1,16 +1,11 @@
 package Dist::Zilla::Plugin::InlineFiles;
+our $VERSION = '1.001';
+
 # ABSTRACT: files in a data section
 use Moose;
 use Moose::Autobox;
 with 'Dist::Zilla::Role::FileGatherer';
 
-=head1 DESCRIPTION
-
-This plugin exists only to be extended, and gathers all files contained in its
-data section and those of its ancestors.  For more information, see
-L<Data::Section|Data::Section>.
-
-=cut
 
 use Data::Section -setup;
 use Dist::Zilla::File::InMemory;
@@ -36,3 +31,36 @@ sub gather_files {
 __PACKAGE__->meta->make_immutable;
 no Moose;
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::Plugin::InlineFiles - files in a data section
+
+=head1 VERSION
+
+version 1.001
+
+=head1 DESCRIPTION
+
+This plugin exists only to be extended, and gathers all files contained in its
+data section and those of its ancestors.  For more information, see
+L<Data::Section|Data::Section>.
+
+=head1 AUTHOR
+
+  Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo SIGNES.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as perl itself.
+
+=cut 
+
+

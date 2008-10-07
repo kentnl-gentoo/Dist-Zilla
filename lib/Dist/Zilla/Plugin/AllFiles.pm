@@ -1,18 +1,12 @@
 package Dist::Zilla::Plugin::AllFiles;
+our $VERSION = '1.001';
+
 # ABSTRACT: gather all the files in your dist's root
 use Moose;
 use Moose::Autobox;
 use MooseX::Types::Path::Class qw(Dir File);
 with 'Dist::Zilla::Role::FileGatherer';
 
-=head1 DESCRIPTION
-
-This is a very, very simple L<FileGatherer|Dist::Zilla::FileGatherer> plugin.
-It looks in the directory named in the L</root> attribute and adds all the
-files it finds there.  If the root begins with a tilde, the tilde is replaced
-with the current user's home directory according to L<File::HomeDir>.
-
-=cut
 
 use File::Find::Rule;
 use File::HomeDir;
@@ -61,3 +55,37 @@ sub gather_files {
 __PACKAGE__->meta->make_immutable;
 no Moose;
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::Plugin::AllFiles - gather all the files in your dist's root
+
+=head1 VERSION
+
+version 1.001
+
+=head1 DESCRIPTION
+
+This is a very, very simple L<FileGatherer|Dist::Zilla::FileGatherer> plugin.
+It looks in the directory named in the L</root> attribute and adds all the
+files it finds there.  If the root begins with a tilde, the tilde is replaced
+with the current user's home directory according to L<File::HomeDir>.
+
+=head1 AUTHOR
+
+  Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo SIGNES.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as perl itself.
+
+=cut 
+
+

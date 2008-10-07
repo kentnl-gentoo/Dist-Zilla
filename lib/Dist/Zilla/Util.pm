@@ -1,6 +1,8 @@
 use strict;
 use warnings;
 package Dist::Zilla::Util;
+our $VERSION = '1.001';
+
 # ABSTRACT: random snippets of code that Dist::Zilla wants
 
 use String::RewritePrefix;
@@ -50,13 +52,6 @@ use String::RewritePrefix;
   }
 }
 
-=method abstract_from_file
-
-This method, I<which is likely to change or go away>, tries to guess the
-abstract of a given file, assuming that it's Perl code.  It looks for a POD
-C<=head1> section called "NAME" or a comment beginning with C<ABSTRACT:>.
-
-=cut
 
 sub abstract_from_file {
   my ($self, $filename) = @_;
@@ -65,15 +60,6 @@ sub abstract_from_file {
   return $e->{abstract};
 }
 
-=method expand_config_package_name 
-
-  my $pkg_name = Util->expand_config_package_name($string);
-
-This method, I<which is likely to change or go away>, rewrites the given string
-into a package name.  Consult L<Dist::Zilla::Config|Dist::Zilla::Config> for
-more information.
-
-=cut
 
 sub expand_config_package_name {
   my ($self, $package) = @_;
@@ -91,3 +77,46 @@ sub expand_config_package_name {
 }
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::Util - random snippets of code that Dist::Zilla wants
+
+=head1 VERSION
+
+version 1.001
+
+=head1 METHODS
+
+=head2 abstract_from_file
+
+This method, I<which is likely to change or go away>, tries to guess the
+abstract of a given file, assuming that it's Perl code.  It looks for a POD
+C<=head1> section called "NAME" or a comment beginning with C<ABSTRACT:>.
+
+=head2 expand_config_package_name 
+
+    my $pkg_name = Util->expand_config_package_name($string);
+
+This method, I<which is likely to change or go away>, rewrites the given string
+into a package name.  Consult L<Dist::Zilla::Config|Dist::Zilla::Config> for
+more information.
+
+=head1 AUTHOR
+
+  Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo SIGNES.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as perl itself.
+
+=cut 
+
+

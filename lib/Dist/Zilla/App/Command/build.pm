@@ -1,6 +1,8 @@
 use strict;
 use warnings;
 package Dist::Zilla::App::Command::build;
+our $VERSION = '1.001';
+
 # ABSTRACT: build your dist
 use Dist::Zilla::App -command;
 
@@ -18,3 +20,30 @@ sub run {
 }
 
 1;
+
+__END__
+
+=pod
+
+=head1 NAME
+
+Dist::Zilla::App::Command::build - build your dist
+
+=head1 VERSION
+
+version 1.001
+
+=head1 AUTHOR
+
+  Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2008 by Ricardo SIGNES.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as perl itself.
+
+=cut 
+
+
