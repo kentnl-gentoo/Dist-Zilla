@@ -1,5 +1,24 @@
 Revision history for Dist-Zilla
 
+
+1.093140  2009-11-10
+          add the FileFinder role
+          "dzil test" will exit non-zero if tests fail
+
+          Split Test into plugins and have a pluggable test system.
+            ( Kent Fredric )
+
+1.093000  2009-10-26
+          require a newer Moose to avoid a few composition errors in older
+          Moose versions
+
+1.092990  2009-10-26
+          most of Dist::Zilla::Config has been moved to Config::MVP::Reader
+
+          THIS WILL BREAK BUNDLES:  bundles are now passed a hashref describing
+          the contents of the Config::MVP::Sequence configuring them, not just
+          the payload
+
 1.092930  2009-10-20
           rebuild documentation with new PodPurler
 
@@ -15,7 +34,7 @@ Revision history for Dist-Zilla
           recognize more kinds of version declaration (Nicholas Perez)
           fix documentation refering to ~/.dzil/config,
             now in ~/.dzil/config.ini ( Kent Fredric )
-          
+
 1.092450  2009-09-02
           fix a bug in config loading for 'dzil' command (melo)
 
