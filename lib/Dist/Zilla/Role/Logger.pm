@@ -1,17 +1,15 @@
-package Dist::Zilla::Types;
+package Dist::Zilla::Role::Logger;
 our $VERSION = '1.100650';
-# ABSTRACT: dzil-specific type library
+use Moose::Role;
+use namespace::autoclean;
+# ABSTRACT: something that logs activity
 
-use MooseX::Types -declare => [qw(DistName License)];
-use MooseX::Types::Moose qw(Str);
+requires 'log';
+requires 'log_debug';
 
-subtype DistName,
-  as Str,
-  where { !/::/ },
-  message { "$_ looks like a module name, not a dist name" };
+sub log_for_plugin       { die '...' }
+sub log_debug_for_plugin { die '...' }
 
-subtype License,
-  as class_type('Software::License');
 
 1;
 
@@ -20,7 +18,7 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Types - dzil-specific type library
+Dist::Zilla::Role::Logger - something that logs activity
 
 =head1 VERSION
 
