@@ -1,5 +1,5 @@
 package Dist::Zilla::Plugin::MetaYAML;
-our $VERSION = '1.100711';
+$Dist::Zilla::Plugin::MetaYAML::VERSION = '2.100880';
 # ABSTRACT: produce a META.yml
 use Moose;
 use Moose::Autobox;
@@ -39,7 +39,7 @@ Dist::Zilla::Plugin::MetaYAML - produce a META.yml
 
 =head1 VERSION
 
-version 1.100711
+version 2.100880
 
 =head1 DESCRIPTION
 

@@ -1,5 +1,5 @@
 package Dist::Zilla::Plugin::PruneCruft;
-our $VERSION = '1.100711';
+$Dist::Zilla::Plugin::PruneCruft::VERSION = '2.100880';
 # ABSTRACT: prune stuff that you probably don't mean to include
 use Moose;
 use Moose::Autobox;
@@ -14,6 +14,7 @@ sub exclude_file {
   return 1 if index($file->name, $self->zilla->name . '-') == 0;
   return 1 if $file->name =~ /\A\./;
   return 1 if $file->name =~ /\A(?:Build|Makefile)\z/;
+  return 1 if $file->name eq 'MYMETA.yml';
   return;
 }
 
@@ -40,7 +41,7 @@ Dist::Zilla::Plugin::PruneCruft - prune stuff that you probably don't mean to in
 
 =head1 VERSION
 
-version 1.100711
+version 2.100880
 
 =head1 SYNOPSIS
 

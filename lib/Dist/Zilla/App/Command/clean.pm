@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 package Dist::Zilla::App::Command::clean;
-our $VERSION = '1.100711';
+$Dist::Zilla::App::Command::clean::VERSION = '2.100880';
 # ABSTRACT: clean up after build, test, or install
 use Dist::Zilla::App -command;
 
@@ -13,19 +13,7 @@ sub abstract { 'clean up after build, test, or install' }
 sub execute {
   my ($self, $opt, $arg) = @_;
 
-  require File::Path;
-  for my $x (grep { -e } '.build', glob($self->zilla->name . '-*')) {
-    $self->log("clean: removing $x");
-    File::Path::rmtree($x);
-  };
-
-  # removing leftovers
-  my @temps =
-    File::Find::Rule
-    ->file
-    ->name( qr/~$/ )
-    ->in('.');
-  unlink @temps;
+  $self->zilla->clean;
 }
 
 1;
@@ -39,7 +27,7 @@ Dist::Zilla::App::Command::clean - clean up after build, test, or install
 
 =head1 VERSION
 
-version 1.100711
+version 2.100880
 
 =head1 SYNOPSIS
 

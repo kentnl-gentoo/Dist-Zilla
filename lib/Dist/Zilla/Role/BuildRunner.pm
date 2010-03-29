@@ -2,13 +2,13 @@ use strict;
 use warnings;
 
 package Dist::Zilla::Role::BuildRunner;
-our $VERSION = '1.100711';
+$Dist::Zilla::Role::BuildRunner::VERSION = '2.100880';
 # ABSTRACT: something used as a delegating agent during 'dzil run'
 
 use Moose::Role;
 
 with 'Dist::Zilla::Role::Plugin';
-requires 'test';
+requires 'build';
 
 no Moose::Role;
 1;
@@ -22,7 +22,7 @@ Dist::Zilla::Role::BuildRunner - something used as a delegating agent during 'dz
 
 =head1 VERSION
 
-version 1.100711
+version 2.100880
 
 =head1 DESCRIPTION
 
