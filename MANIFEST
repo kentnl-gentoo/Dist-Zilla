@@ -38,6 +38,8 @@ lib/Dist/Zilla/App/Command/test.pm
 lib/Dist/Zilla/App/Tester.pm
 lib/Dist/Zilla/Chrome/Term.pm
 lib/Dist/Zilla/Chrome/Test.pm
+lib/Dist/Zilla/Dist/Builder.pm
+lib/Dist/Zilla/Dist/Minter.pm
 lib/Dist/Zilla/File/FromCode.pm
 lib/Dist/Zilla/File/InMemory.pm
 lib/Dist/Zilla/File/OnDisk.pm
@@ -80,9 +82,11 @@ lib/Dist/Zilla/Plugin/PodCoverageTests.pm
 lib/Dist/Zilla/Plugin/PodSyntaxTests.pm
 lib/Dist/Zilla/Plugin/PodVersion.pm
 lib/Dist/Zilla/Plugin/Prereq.pm
+lib/Dist/Zilla/Plugin/Prereqs.pm
 lib/Dist/Zilla/Plugin/PruneCruft.pm
 lib/Dist/Zilla/Plugin/PruneFiles.pm
 lib/Dist/Zilla/Plugin/Readme.pm
+lib/Dist/Zilla/Plugin/RemovePrereqs.pm
 lib/Dist/Zilla/Plugin/ShareDir.pm
 lib/Dist/Zilla/Plugin/TemplateModule.pm
 lib/Dist/Zilla/Plugin/TestRelease.pm
@@ -140,8 +144,10 @@ misc/lib/Dist/Zilla/App/Command/gconf.pm
 misc/lib/Dist/Zilla/App/Command/input.pm
 profiles/default/profile.ini
 t/compile.t
+t/global/config.ini
 t/lib/Dist/Zilla/Stash/Heap.pm
 t/lib/Test/DZil.pm
+t/minter.t
 t/plugins/autoprereq.t
 t/plugins/autoversion.t
 t/plugins/confirmrelease.t
@@ -162,6 +168,7 @@ t/plugins/nextrelease.t
 t/plugins/pkgdist.t
 t/plugins/pkgversion.t
 t/plugins/podversion.t
+t/plugins/prereqs.t
 t/plugins/prunes.t
 t/plugins/readme.t
 t/release-pod-syntax.t
@@ -172,4 +179,5 @@ todo/config-arg-prefix.mkdn
 todo/delay-core-attrs.mkdn
 todo/external-core-attr.mkdn
 todo/version-from-prev.mkdn
+todo/vfs-for-files.mkdn
 todo/xs-improvement.mkdn
