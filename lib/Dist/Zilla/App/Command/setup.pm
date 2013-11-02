@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::App::Command::setup;
 {
-  $Dist::Zilla::App::Command::setup::VERSION = '4.300039';
+  $Dist::Zilla::App::Command::setup::VERSION = '5.004';
 }
 # ABSTRACT: set up a basic global config file
 use Dist::Zilla::App -command;
@@ -98,6 +98,7 @@ sub execute {
       "What is your PAUSE password? ",
       {
         check   => sub { defined $_[0] and length $_[0] },
+        noecho  => 1,
       },
     );
   }
@@ -144,7 +145,7 @@ Dist::Zilla::App::Command::setup - set up a basic global config file
 
 =head1 VERSION
 
-version 4.300039
+version 5.004
 
 =head1 SYNOPSIS
 

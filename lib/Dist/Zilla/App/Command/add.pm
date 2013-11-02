@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::App::Command::add;
 {
-  $Dist::Zilla::App::Command::add::VERSION = '4.300039';
+  $Dist::Zilla::App::Command::add::VERSION = '5.004';
 }
 # ABSTRACT: add a module to a dist
 use Dist::Zilla::App -command;
@@ -77,11 +77,11 @@ Dist::Zilla::App::Command::add - add a module to a dist
 
 =head1 VERSION
 
-version 4.300039
+version 5.004
 
 =head1 SYNOPSIS
 
-Adds a a new module to a Dist::Zilla-based distribution
+Adds a new module to a Dist::Zilla-based distribution
 
   $ dzil add Some::New::Module
 

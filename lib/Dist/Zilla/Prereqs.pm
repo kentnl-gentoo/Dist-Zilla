@@ -1,6 +1,6 @@
 package Dist::Zilla::Prereqs;
 {
-  $Dist::Zilla::Prereqs::VERSION = '4.300039';
+  $Dist::Zilla::Prereqs::VERSION = '5.004';
 }
 # ABSTRACT: the prerequisites of a Dist::Zilla distribution
 use Moose;
@@ -28,6 +28,15 @@ has cpan_meta_prereqs => (
   ) ],
 );
 
+# storing this is sort of gross, but MakeMaker winds up needing the same data
+# anyway. -- xdg, 2013-10-22
+has merged_requires => (
+  is => 'ro',
+  isa => 'CPAN::Meta::Requirements',
+  init_arg => undef,
+  default => sub { CPAN::Meta::Requirements->new },
+);
+
 
 sub register_prereqs {
   my $self = shift;
@@ -46,6 +55,38 @@ sub register_prereqs {
   return;
 }
 
+before 'finalize' => sub {
+  my ($self) = @_;
+  $self->sync_runtime_build_test_requires;
+};
+
+
+# this avoids a long-standing CPAN.pm bug that incorrectly merges runtime and
+# "build" (build+test) requirements by ensuring requirements stay unified
+# across all three phases
+sub sync_runtime_build_test_requires {
+  my $self = shift;
+
+  # first pass: generated merged requirements
+  for my $phase ( qw/runtime build test/ ) {
+    my $req = $self->requirements_for($phase, 'requires');
+    $self->merged_requires->add_requirements( $req );
+  };
+
+  # second pass: update from merged requirements
+  for my $phase ( qw/runtime build test/ ) {
+    my $req = $self->requirements_for($phase, 'requires');
+    for my $mod ( $req->required_modules ) {
+      $req->clear_requirement( $mod );
+      $req->add_string_requirement(
+        $mod => $self->merged_requires->requirements_for_module($mod)
+      );
+    }
+  }
+
+  return;
+}
+
 __PACKAGE__->meta->make_immutable;
 1;
 
@@ -59,7 +100,7 @@ Dist::Zilla::Prereqs - the prerequisites of a Dist::Zilla distribution
 
 =head1 VERSION
 
-version 4.300039
+version 5.004
 
 =head1 DESCRIPTION
 

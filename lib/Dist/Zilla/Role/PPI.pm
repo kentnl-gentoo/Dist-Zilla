@@ -1,6 +1,6 @@
 package Dist::Zilla::Role::PPI;
 {
-  $Dist::Zilla::Role::PPI::VERSION = '4.300039';
+  $Dist::Zilla::Role::PPI::VERSION = '5.004';
 }
 # ABSTRACT: a role for plugins which use PPI
 use Moose::Role;
@@ -18,10 +18,11 @@ sub ppi_document_for_file {
   my ($self, $file) = @_;
 
   my $content = $file->content;
+  my $encoded_content = $file->encoded_content;
 
   # We cache on the MD5 checksum to detect if the document has been modified
   # by some other plugin since it was last parsed, our document is invalid.
-  my $md5 = md5($content);
+  my $md5 = md5($encoded_content);
   return $CACHE{$md5} if $CACHE{$md5};
 
   my $document = PPI::Document->new(\$content)
@@ -36,9 +37,10 @@ sub save_ppi_document_to_file {
 
   my $new_content = $document->serialize;
 
-  $CACHE{ md5($new_content) } = $document;
-
   $file->content($new_content);
+
+  $CACHE{ md5($file->encoded_content) } = $document;
+
 }
 
 
@@ -69,7 +71,7 @@ Dist::Zilla::Role::PPI - a role for plugins which use PPI
 
 =head1 VERSION
 
-version 4.300039
+version 5.004
 
 =head1 DESCRIPTION
 

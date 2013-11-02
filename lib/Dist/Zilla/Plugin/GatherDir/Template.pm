@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::GatherDir::Template;
 {
-  $Dist::Zilla::Plugin::GatherDir::Template::VERSION = '4.300039';
+  $Dist::Zilla::Plugin::GatherDir::Template::VERSION = '5.004';
 }
 # ABSTRACT: gather all the files in a directory and use them as templates
 use Moose;
@@ -12,16 +12,13 @@ use namespace::autoclean;
 use autodie;
 use Moose::Autobox;
 use Dist::Zilla::File::FromCode;
+use Path::Tiny;
 
 
 sub _file_from_filename {
   my ($self, $filename) = @_;
 
-  my $template = do {
-    open my $fh, '<', $filename;
-    local $/;
-    <$fh>;
-  };
+  my $template = path($filename)->slurp_utf8;
 
   return Dist::Zilla::File::FromCode->new({
     name => $filename,
@@ -52,7 +49,7 @@ Dist::Zilla::Plugin::GatherDir::Template - gather all the files in a directory a
 
 =head1 VERSION
 
-version 4.300039
+version 5.004
 
 =head1 DESCRIPTION
 

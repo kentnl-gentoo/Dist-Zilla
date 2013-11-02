@@ -1,8 +1,8 @@
 package Dist::Zilla::Plugin::PruneFiles;
 {
-  $Dist::Zilla::Plugin::PruneFiles::VERSION = '4.300039';
+  $Dist::Zilla::Plugin::PruneFiles::VERSION = '5.004';
 }
-# ABSTRACT: prune arbirary files from the dist
+# ABSTRACT: prune arbitrary files from the dist
 use Moose;
 use Moose::Autobox;
 with 'Dist::Zilla::Role::FilePruner';
@@ -58,11 +58,11 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Plugin::PruneFiles - prune arbirary files from the dist
+Dist::Zilla::Plugin::PruneFiles - prune arbitrary files from the dist
 
 =head1 VERSION
 
-version 4.300039
+version 5.004
 
 =head1 SYNOPSIS
 
