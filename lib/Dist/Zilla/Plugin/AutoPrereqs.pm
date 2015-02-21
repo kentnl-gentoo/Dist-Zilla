@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::AutoPrereqs;
 # ABSTRACT: automatically extract prereqs from your modules
-$Dist::Zilla::Plugin::AutoPrereqs::VERSION = '5.031';
+$Dist::Zilla::Plugin::AutoPrereqs::VERSION = '5.032';
 use Moose;
 with(
   'Dist::Zilla::Role::PrereqSource',
@@ -59,6 +59,15 @@ use namespace::autoclean;
 #pod L<Prereqs|Dist::Zilla::Plugin::Prereqs> plugin.
 #pod
 #pod This plugin will skip the modules shipped within your dist.
+#pod
+#pod B<Note>, if you have any non-Perl files in your C<t/> directory or other
+#pod directories being scanned, be sure to mark those files' encoding as C<bytes>
+#pod with the L<Encoding|Dist::Zilla::Plugin::Encoding> plugin so they won't be
+#pod scanned:
+#pod
+#pod     [Encoding]
+#pod     encoding = bytes
+#pod     match    = ^t/data/
 #pod
 #pod =attr extra_scanners
 #pod
@@ -165,6 +174,7 @@ sub register_prereqs {
       push @modules, List::MoreUtils::uniq @this_thing;
 
       # parse a file, and merge with existing prereqs
+      $self->log_debug([ 'scanning %s for %s prereqs', $file->name, $phase ]);
       my $file_req = $scanner->scan_ppi_document(
         $self->ppi_document_for_file($file)
       );
@@ -215,7 +225,7 @@ Dist::Zilla::Plugin::AutoPrereqs - automatically extract prereqs from your modul
 
 =head1 VERSION
 
-version 5.031
+version 5.032
 
 =head1 SYNOPSIS
 
@@ -234,6 +244,15 @@ If some prereqs are not found, you can still add them manually with the
 L<Prereqs|Dist::Zilla::Plugin::Prereqs> plugin.
 
 This plugin will skip the modules shipped within your dist.
+
+B<Note>, if you have any non-Perl files in your C<t/> directory or other
+directories being scanned, be sure to mark those files' encoding as C<bytes>
+with the L<Encoding|Dist::Zilla::Plugin::Encoding> plugin so they won't be
+scanned:
+
+    [Encoding]
+    encoding = bytes
+    match    = ^t/data/
 
 =head1 ATTRIBUTES
 

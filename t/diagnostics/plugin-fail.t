@@ -2,10 +2,11 @@ use strict;
 use warnings;
 
 use Test::More 0.88;
+use Test::DZil;
+use Test::Fatal;
 
 use lib 't/lib';
 
-use Test::DZil;
 
 sub mkconfig {
   my $root = shift;
@@ -14,79 +15,55 @@ sub mkconfig {
   return $t;
 }
 
-sub testeval(&&) {
-  my ( $evaler, $testcode ) = @_;
-  local $@;
-  eval { $evaler->(); };
-  my $lasterror = $@;
+subtest "BrokenPlugin" => sub {
+  my $error = exception { mkconfig( 'corpus/dist/DZT', [ 'BrokenPlugin' => {} ] ) };
 
-  $testcode->( defined $lasterror, $lasterror );
-}
-
-testeval {
-  mkconfig( 'corpus/dist/DZT', [ 'BrokenPlugin' => {} ] );
-}
-sub {
-  my ( $died, $error ) = @_;
-  subtest "BrokenPlugin" => sub {
-    ok( $died, "Failure occurs when a plugin is broken" );
-    like( $error, qr{Compilation failed in require}, "Exception is a compilation failure" );
-    like( $error, qr{This plugin is broken!},        "Exception reports the original problem" );
-
-  };
+  ok( $error, "Failure occurs when a plugin is broken" );
+  like( $error, qr{Compilation failed in require}, "Exception is a compilation failure" );
+  like( $error, qr{This plugin is broken!},        "Exception reports the original problem" );
 };
 
-testeval {
-  mkconfig( 'corpus/dist/DZT', [ 'BrokenPlugin2' => {} ] );
-}
-sub {
-  my ( $died, $error ) = @_;
-  subtest "BrokenPlugin2" => sub {
-    ok( $died, "Failure occurs when a plugin is broken" );
-    like( $error, qr{Compilation failed in require}, "Exception is a compilation failure" );
+subtest "BrokenPlugin2" => sub {
+  my $error = exception { mkconfig( 'corpus/dist/DZT', [ 'BrokenPlugin2' => {} ] ) };
 
-    like( $error, qr{This plugin is broken!}, "Exception reports the original problem" );
-
-  };
+  ok( $error, "Failure occurs when a plugin is broken" );
+  like( $error, qr{Compilation failed in require}, "Exception is a compilation failure" );
+  like( $error, qr{This plugin is broken!}, "Exception reports the original problem" );
 };
 
-testeval {
-  mkconfig( 'corpus/dist/DZT', [ 'BrokenPlugin3' => {} ] );
-}
-sub {
-  my ( $died, $error ) = @_;
-  subtest "BrokenPlugin3" => sub {
-    ok( $died, "Failure occurs when a plugin is broken" );
-    like( $error, qr{Compilation failed}, "Exception explains that it couldn't load the plugin" );
-    like( $error, qr{Missing right curly or square bracket}, "Exception reports the original problem" );
+subtest "BrokenPlugin3" => sub {
+  my $error = exception { mkconfig( 'corpus/dist/DZT', [ 'BrokenPlugin3' => {} ] ) };
 
-  };
+  ok( $error, "Failure occurs when a plugin is broken" );
+  like( $error, qr{Compilation failed}, "Exception explains that it couldn't load the plugin" );
+  like( $error, qr{Missing right curly or square bracket}, "Exception reports the original problem" );
 };
 
-testeval {
-  mkconfig( 'corpus/dist/DZT', [ 'BrokenPlugin4' => {} ] );
-}
-sub {
-  my ( $died, $error ) = @_;
-  subtest "BrokenPlugin4" => sub {
-    ok( $died, "Failure occurs when a plugin is broken" );
-    like( $error, qr{Can't locate}, "Exception explains that it couldn't load the plugin 2-layers down" );
-    like( $error, qr{Some/Package/That/Does/Not/Exist/}, "Exception reports the original problem" );
+subtest "BrokenPlugin4" => sub {
+  my $error = exception { mkconfig( 'corpus/dist/DZT', [ 'BrokenPlugin4' => {} ] ) };
 
-  };
+  ok( $error, "Failure occurs when a plugin is broken" );
+  like( $error, qr{Can't locate}, "Exception explains that it couldn't load the plugin 2-layers down" );
+  like( $error, qr{Some/Package/That/Does/Not/Exist/}, "Exception reports the original problem" );
 };
 
-testeval {
-  mkconfig( 'corpus/dist/DZT', [ 'Not::A::Plugin' => {} ] );
-}
-sub {
-  my ( $died, $error ) = @_;
-  subtest "Not::A::Plugin" => sub {
-    ok( $died, "Failure occurs when a plugin is missing" );
-    like( $error, qr{Not::A::Plugin.*isn't installed}, "Exception explains that the plugin is not installed" );
-    like( $error, qr{dzil authordeps}, "Exception suggests using authordeps" );
+subtest "Not::A::Plugin" => sub {
+  my $error = exception { mkconfig( 'corpus/dist/DZT', [ 'Not::A::Plugin' => {} ] ) };
 
-  };
+  ok( $error, "Failure occurs when a plugin is missing" );
+  like( $error, qr{Not::A::Plugin.*isn't installed}, "Exception explains that the plugin is not installed" );
+  like( $error, qr{dzil authordeps}, "Exception suggests using authordeps" );
+};
+
+subtest ":version, good" => sub {
+  my $error = exception { mkconfig( 'corpus/dist/DZT', [ 'Versioned' => { ':version' => '1.0' } ] ) };
+  ok(!$error, 'plugin satisfies requested version');
+};
+
+subtest ":version, bad" => sub {
+  my $error = exception { mkconfig( 'corpus/dist/DZT', [ 'Versioned' => { ':version' => '1.4' } ] ) };
+  ok($error, 'plugin does not satisfy requested version');
+  like($error, qr/\QDist::Zilla::Plugin::Versioned version (1.234) does not match required version: 1.4\E/, 'exception tells us why');
 };
 
 done_testing;

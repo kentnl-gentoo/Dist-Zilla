@@ -1,12 +1,29 @@
 package Dist::Zilla::MVP::Section;
 # ABSTRACT: a standard section in Dist::Zilla's configuration sequence
-$Dist::Zilla::MVP::Section::VERSION = '5.031';
+$Dist::Zilla::MVP::Section::VERSION = '5.032';
 use Moose;
 extends 'Config::MVP::Section';
 
 use namespace::autoclean;
 
 use Config::MVP::Section 2.200002; # for not-installed error
+
+around add_value => sub {
+  my ($orig, $self, $name, $value) = @_;
+
+  if ($name =~ s/\A://) {
+    if ($name eq 'version') {
+      Dist::Zilla::Util->_assert_loaded_class_version_ok(
+        $self->package,
+        $value,
+      );
+    }
+
+    return;
+  }
+
+  $self->$orig($name, $value);
+};
 
 after finalize => sub {
   my ($self) = @_;
@@ -18,16 +35,6 @@ after finalize => sub {
   );
 
   my %payload = %{ $self->payload };
-
-  my %dzil;
-  $dzil{$_} = delete $payload{":$_"} for grep { s/\A:// } keys %payload;
-
-  if (defined $dzil{version}) {
-    Dist::Zilla::Util->_assert_loaded_class_version_ok(
-      $plugin_class,
-      $dzil{version},
-    );
-  }
 
   $plugin_class->register_component($name, \%payload, $self);
 
@@ -49,7 +56,7 @@ Dist::Zilla::MVP::Section - a standard section in Dist::Zilla's configuration se
 
 =head1 VERSION
 
-version 5.031
+version 5.032
 
 =head1 AUTHOR
 
