@@ -1,6 +1,6 @@
 package Dist::Zilla;
 # ABSTRACT: distribution builder; installer not included!
-$Dist::Zilla::VERSION = '5.032';
+$Dist::Zilla::VERSION = '5.033';
 use Moose 0.92; # role composition fixes
 with 'Dist::Zilla::Role::ConfigDumper';
 
@@ -780,7 +780,7 @@ Dist::Zilla - distribution builder; installer not included!
 
 =head1 VERSION
 
-version 5.032
+version 5.033
 
 =head1 DESCRIPTION
 
@@ -1002,6 +1002,306 @@ Search for plugin bundles: L<https://metacpan.org/search?q=Dist::Zilla::PluginBu
 =head1 AUTHOR
 
 Ricardo SIGNES <rjbs@cpan.org>
+
+=head1 CONTRIBUTORS
+
+=for stopwords Ævar Arnfjörð Bjarmason Alexei Znamensky Alex Vandiver ambs Andrew Rodland Andy Jack Apocalypse ben hengst Bernardo Rechea Brian Fraser Caleb Cushing Christian Walde Christopher J. Madsen Cory G Watson csjewell Curtis Brandt Damien KRotkine Danijel Tasov Dave O'Neill Rolsky David Golden Steinbrunner Davor Cubranic Dimitar Petrov Doug Bell Fayland Lam Florian Ragwitz Fred Moyer fREW Schmidt gardnerm Graham Barr Knop Grzegorz Rożniecki Hans Dieter Pearcey Ivan Bessarabov Jakob Voss jantore Jérôme Quelin Jesse Luehrs Vincent John Napiorkowski Jonathan C. Otsuka Rockway Scott Duff Yu Karen Etheridge Kent Fredric Leon Timmermans Lucas Theisen Luc St-Louis Marcel Gruenauer Martin McGrath Mateu X Hunter Mike Doherty Moritz Onken Neil Bowers Nickolay Platonov nperez Olivier Mengué Pedro Melo Randy Stauner robertkrimen Rob Hoelz Robin Smidsrød Shawn M Moore Smylers Steffen Schwigon Steven Haryanto Tatsuhiko Miyagawa Upasana Shukla Vyacheslav Matjukhin Yanick Champoux Yuval Kogman
+
+=over 4
+
+=item *
+
+Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+
+=item *
+
+Alexei Znamensky <russoz@cpan.org>
+
+=item *
+
+Alex Vandiver <alexmv@mit.edu>
+
+=item *
+
+ambs <ambs@cpan.org>
+
+=item *
+
+Andrew Rodland <andrew@hbslabs.com>
+
+=item *
+
+Andy Jack <andyjack@cpan.org>
+
+=item *
+
+Apocalypse <APOCAL@cpan.org>
+
+=item *
+
+ben hengst <ben.hengst@gmail.com>
+
+=item *
+
+Bernardo Rechea <brbpub@gmail.com>
+
+=item *
+
+Brian Fraser <fraserbn@gmail.com>
+
+=item *
+
+Caleb Cushing <xenoterracide@gmail.com>
+
+=item *
+
+Christian Walde <walde.christian@googlemail.com>
+
+=item *
+
+Christopher J. Madsen <cjm@cjmweb.net>
+
+=item *
+
+Cory G Watson <gphat@onemogin.com>
+
+=item *
+
+csjewell <perl@csjewell.fastmail.us>
+
+=item *
+
+Curtis Brandt <curtisjbrandt@gmail.com>
+
+=item *
+
+Damien KRotkine <dkrotkine@booking.com>
+
+=item *
+
+Danijel Tasov <dt@korn.shell.la>
+
+=item *
+
+Dave O'Neill <dmo@dmo.ca>
+
+=item *
+
+Dave Rolsky <autarch@urth.org>
+
+=item *
+
+David Golden <dagolden@cpan.org>
+
+=item *
+
+David Steinbrunner <dsteinbrunner@pobox.com>
+
+=item *
+
+Davor Cubranic <cubranic@stat.ubc.ca>
+
+=item *
+
+Dimitar Petrov <mitakaa@gmail.com>
+
+=item *
+
+Doug Bell <madcityzen@gmail.com>
+
+=item *
+
+Fayland Lam <fayland@gmail.com>
+
+=item *
+
+Florian Ragwitz <rafl@debian.org>
+
+=item *
+
+Fred Moyer <fred@redhotpenguin.com>
+
+=item *
+
+fREW Schmidt <frioux@gmail.com>
+
+=item *
+
+gardnerm <gardnerm@gsicommerce.com>
+
+=item *
+
+Graham Barr <gbarr@pobox.com>
+
+=item *
+
+Graham Knop <haarg@haarg.org>
+
+=item *
+
+Grzegorz Rożniecki <xaerxess@gmail.com>
+
+=item *
+
+Hans Dieter Pearcey <hdp@weftsoar.net>
+
+=item *
+
+Ivan Bessarabov <ivan@bessarabov.ru>
+
+=item *
+
+Jakob Voss <jakob@nichtich.de>
+
+=item *
+
+jantore <jantore@32k.org>
+
+=item *
+
+Jérôme Quelin <jquelin@gmail.com>
+
+=item *
+
+Jesse Luehrs <doy@tozt.net>
+
+=item *
+
+Jesse Vincent <jesse@bestpractical.com>
+
+=item *
+
+John Napiorkowski <jjnapiork@cpan.org>
+
+=item *
+
+Jonathan C. Otsuka <djgoku@gmail.com>
+
+=item *
+
+Jonathan Rockway <jrockway@cpan.org>
+
+=item *
+
+Jonathan Scott Duff <duff@pobox.com>
+
+=item *
+
+Jonathan Yu <jawnsy@cpan.org>
+
+=item *
+
+Karen Etheridge <ether@cpan.org>
+
+=item *
+
+Kent Fredric <kentfredric@gmail.com>
+
+=item *
+
+Leon Timmermans <fawaka@gmail.com>
+
+=item *
+
+Lucas Theisen <lucastheisen@pastdev.com>
+
+=item *
+
+Luc St-Louis <lucs@pobox.com>
+
+=item *
+
+Marcel Gruenauer <hanekomu@gmail.com>
+
+=item *
+
+Martin McGrath <mcgrath.martin@gmail.com>
+
+=item *
+
+Mateu X Hunter <hunter@missoula.org>
+
+=item *
+
+Mike Doherty <mike@mikedoherty.ca>
+
+=item *
+
+Moritz Onken <onken@netcubed.de>
+
+=item *
+
+Neil Bowers <neil@bowers.com>
+
+=item *
+
+Nickolay Platonov <nickolay@desktop.(none)>
+
+=item *
+
+nperez <nperez@cpan.org>
+
+=item *
+
+Olivier Mengué <dolmen@cpan.org>
+
+=item *
+
+Pedro Melo <melo@simplicidade.org>
+
+=item *
+
+Randy Stauner <rwstauner@cpan.org>
+
+=item *
+
+robertkrimen <robertkrimen@gmail.com>
+
+=item *
+
+Rob Hoelz <rob@hoelz.ro>
+
+=item *
+
+Robin Smidsrød <robin@smidsrod.no>
+
+=item *
+
+Shawn M Moore <sartak@gmail.com>
+
+=item *
+
+Smylers <Smylers@stripey.com>
+
+=item *
+
+Steffen Schwigon <ss5@renormalist.net>
+
+=item *
+
+Steven Haryanto <stevenharyanto@gmail.com>
+
+=item *
+
+Tatsuhiko Miyagawa <miyagawa@bulknews.net>
+
+=item *
+
+Upasana Shukla <me@upasana.me>
+
+=item *
+
+Vyacheslav Matjukhin <mmcleric@yandex-team.ru>
+
+=item *
+
+Yanick Champoux <yanick@babyl.dyndns.org>
+
+=item *
+
+Yuval Kogman <nothingmuch@woobling.org>
+
+=back
 
 =head1 COPYRIGHT AND LICENSE
 
