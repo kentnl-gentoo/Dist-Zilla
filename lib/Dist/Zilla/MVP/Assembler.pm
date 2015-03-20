@@ -1,9 +1,9 @@
 package Dist::Zilla::MVP::Assembler;
 # ABSTRACT: Dist::Zilla-specific subclass of Config::MVP::Assembler
-$Dist::Zilla::MVP::Assembler::VERSION = '5.033';
+$Dist::Zilla::MVP::Assembler::VERSION = '5.034';
 use Moose;
 extends 'Config::MVP::Assembler';
-with 'Config::MVP::Assembler::WithBundles';
+with 'Config::MVP::Assembler::WithBundles' => { -version => '2.200010' };
 
 use namespace::autoclean;
 
@@ -84,7 +84,7 @@ Dist::Zilla::MVP::Assembler - Dist::Zilla-specific subclass of Config::MVP::Asse
 
 =head1 VERSION
 
-version 5.033
+version 5.034
 
 =head1 DESCRIPTION
 

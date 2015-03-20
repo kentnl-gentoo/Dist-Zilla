@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::PruneCruft;
 # ABSTRACT: prune stuff that you probably don't mean to include
-$Dist::Zilla::Plugin::PruneCruft::VERSION = '5.033';
+$Dist::Zilla::Plugin::PruneCruft::VERSION = '5.034';
 use Moose;
 use Moose::Util::TypeConstraints;
 with 'Dist::Zilla::Role::FilePruner';
@@ -114,7 +114,7 @@ Dist::Zilla::Plugin::PruneCruft - prune stuff that you probably don't mean to in
 
 =head1 VERSION
 
-version 5.033
+version 5.034
 
 =head1 SYNOPSIS
 

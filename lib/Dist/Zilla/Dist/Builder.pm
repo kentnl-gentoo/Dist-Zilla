@@ -1,6 +1,6 @@
 package Dist::Zilla::Dist::Builder;
 # ABSTRACT: dist zilla subclass for building dists
-$Dist::Zilla::Dist::Builder::VERSION = '5.033';
+$Dist::Zilla::Dist::Builder::VERSION = '5.034';
 use Moose 0.92; # role composition fixes
 extends 'Dist::Zilla';
 
@@ -266,7 +266,7 @@ sub _load_config {
     };
 
     my $package = $_->package;
-    my $bundle  = $_->section_name =~ /^@/ ? ' bundle' : '';
+    my $bundle  = $_->section_name =~ m{^@(?!.*/)} ? ' bundle' : '';
 
     die <<"END_DIE";
 Required plugin$bundle $package isn't installed.
@@ -812,7 +812,7 @@ Dist::Zilla::Dist::Builder - dist zilla subclass for building dists
 
 =head1 VERSION
 
-version 5.033
+version 5.034
 
 =head1 ATTRIBUTES
 

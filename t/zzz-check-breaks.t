@@ -14,6 +14,7 @@ SKIP: {
 }
 
 my $breaks = {
+  "Dist::Zilla::App::Command::stale" => "< 0.040",
   "Dist::Zilla::Plugin::MakeMaker::Awesome" => "< 0.22"
 };
 

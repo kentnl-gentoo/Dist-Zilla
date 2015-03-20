@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::Tutorial;
 # ABSTRACT: how to use this "Dist::Zilla" thing
-$Dist::Zilla::Tutorial::VERSION = '5.033';
+$Dist::Zilla::Tutorial::VERSION = '5.034';
 use Carp ();
 Carp::confess "you're not meant to use the tutorial, just read it!";
 1;
@@ -148,7 +148,7 @@ Dist::Zilla::Tutorial - how to use this "Dist::Zilla" thing
 
 =head1 VERSION
 
-version 5.033
+version 5.034
 
 =head1 SYNOPSIS
 
