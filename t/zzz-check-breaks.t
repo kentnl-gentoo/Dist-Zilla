@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-# this test was generated with Dist::Zilla::Plugin::Test::CheckBreaks 0.011
+# this test was generated with Dist::Zilla::Plugin::Test::CheckBreaks 0.012
 
 use Test::More 0.88;
 
@@ -15,7 +15,10 @@ SKIP: {
 
 my $breaks = {
   "Dist::Zilla::App::Command::stale" => "< 0.040",
-  "Dist::Zilla::Plugin::MakeMaker::Awesome" => "< 0.22"
+  "Dist::Zilla::App::Command::update" => "<= 0.04",
+  "Dist::Zilla::Plugin::MakeMaker::Awesome" => "< 0.22",
+  "Dist::Zilla::Plugin::Run" => "<= 0.034",
+  "Dist::Zilla::Plugin::TrialVersionComment" => "<= 0.003"
 };
 
 use CPAN::Meta::Requirements;

@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::Util;
 # ABSTRACT: random snippets of code that Dist::Zilla wants
-$Dist::Zilla::Util::VERSION = '5.034';
+$Dist::Zilla::Util::VERSION = '5.035';
 use Carp ();
 use Encode ();
 use String::RewritePrefix 0.002; # better string context behavior
@@ -149,7 +149,7 @@ Dist::Zilla::Util - random snippets of code that Dist::Zilla wants
 
 =head1 VERSION
 
-version 5.034
+version 5.035
 
 =head1 METHODS
 

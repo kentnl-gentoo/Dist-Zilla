@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::AutoPrereq;
 # ABSTRACT: (DEPRECATED) the old name for Dist::Zilla::Plugin::AutoPrereqs
-$Dist::Zilla::Plugin::AutoPrereq::VERSION = '5.034';
+$Dist::Zilla::Plugin::AutoPrereq::VERSION = '5.035';
 use Moose;
 extends 'Dist::Zilla::Plugin::AutoPrereqs';
 
@@ -34,7 +34,7 @@ Dist::Zilla::Plugin::AutoPrereq - (DEPRECATED) the old name for Dist::Zilla::Plu
 
 =head1 VERSION
 
-version 5.034
+version 5.035
 
 =head1 SEE ALSO
 

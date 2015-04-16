@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::App::Command::build;
 # ABSTRACT: build your dist
-$Dist::Zilla::App::Command::build::VERSION = '5.034';
+$Dist::Zilla::App::Command::build::VERSION = '5.035';
 use Dist::Zilla::App -command;
 
 #pod =head1 SYNOPSIS
@@ -61,8 +61,13 @@ sub execute {
     $self->zilla->build_in($opt->in);
   } else {
     my $method = $opt->tgz ? 'build_archive' : 'build';
-    my $zilla  = $self->zilla;
-    $zilla->is_trial(1) if $opt->trial;
+    my $zilla;
+    {
+      local $ENV{RELEASE_STATUS} = $ENV{RELEASE_STATUS};
+      $ENV{RELEASE_STATUS} ||= $opt->trial ? "testing" : "stable";
+      $zilla  = $self->zilla;
+      $zilla->release_status; # initialize before running method
+    }
     $zilla->$method;
   }
 
@@ -83,7 +88,7 @@ Dist::Zilla::App::Command::build - build your dist
 
 =head1 VERSION
 
-version 5.034
+version 5.035
 
 =head1 SYNOPSIS
 
