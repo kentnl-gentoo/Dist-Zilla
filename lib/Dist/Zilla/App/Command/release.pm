@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::App::Command::release;
 # ABSTRACT: release your dist to the CPAN
-$Dist::Zilla::App::Command::release::VERSION = '5.035';
+$Dist::Zilla::App::Command::release::VERSION = '5.036';
 use Dist::Zilla::App -command;
 
 #pod =head1 SYNOPSIS
@@ -29,10 +29,10 @@ sub execute {
 
   my $zilla;
   {
+    # isolate changes to RELEASE_STATUS to zilla construction
     local $ENV{RELEASE_STATUS} = $ENV{RELEASE_STATUS};
-    $ENV{RELEASE_STATUS} ||= $opt->trial ? "testing" : "stable";
+    $ENV{RELEASE_STATUS} = 'testing' if $opt->trial;
     $zilla = $self->zilla;
-    $zilla->release_status; # initialize before running method
   }
 
   $self->zilla->release;
@@ -52,7 +52,7 @@ Dist::Zilla::App::Command::release - release your dist to the CPAN
 
 =head1 VERSION
 
-version 5.035
+version 5.036
 
 =head1 SYNOPSIS
 

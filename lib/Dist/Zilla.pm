@@ -1,6 +1,6 @@
 package Dist::Zilla;
 # ABSTRACT: distribution builder; installer not included!
-$Dist::Zilla::VERSION = '5.035';
+$Dist::Zilla::VERSION = '5.036';
 use Moose 0.92; # role composition fixes
 with 'Dist::Zilla::Role::ConfigDumper';
 
@@ -137,15 +137,18 @@ sub _build_version {
 #pod L<ReleaseStatusProvider|Dist::Zilla::Role::ReleaseStatusProvider>, if one
 #pod has been configured.
 #pod
-#pod For backwards compatibility, setting C<is_trial> in F<dist.ini> is equivalent
-#pod to using a C<ReleaseStatusProvider>.
+#pod For backwards compatibility, setting C<is_trial> true in F<dist.ini> is
+#pod equivalent to using a C<ReleaseStatusProvider>.  If C<is_trial> is false,
+#pod it has no effect.
 #pod
 #pod Only B<one> C<ReleaseStatusProvider> may be used.
 #pod
-#pod If no providers are used, the release status defaults to 'stable'.
+#pod If no providers are used, the release status defaults to 'stable' unless there
+#pod is an "_" character in the version, in which case, it defaults to 'testing'.
 #pod
 #pod =cut
 
+# release status must be lazy, after files are gathered
 has release_status => (
   is => 'ro',
   isa => ReleaseStatus,
@@ -157,16 +160,15 @@ sub _build_release_status {
   my ($self) = @_;
 
   # environment variables override completely
-  return $ENV{RELEASE_STATUS} if defined $ENV{RELEASE_STATUS};
-  return 'testing' if $ENV{TRIAL};
+  return $self->_release_status_from_env if $self->_release_status_from_env;
 
   # other ways of setting status must not conflict
   my $status;
 
-  # dist.ini is equivalent to a release provider
-  if ( $self->_has_override_is_trial ) {
-    $status = $self->_override_is_trial ? 'testing' : 'stable';
-  }
+  # dist.ini is equivalent to a release provider if is_trial is true.
+  # If false, though, we want other providers to run or fall back to
+  # the version
+  $status = 'testing' if $self->_override_is_trial;
 
   for my $plugin (@{ $self->plugins_with(-ReleaseStatusProvider) }) {
     next unless defined(my $this_status = $plugin->provide_release_status);
@@ -177,7 +179,20 @@ sub _build_release_status {
     $status = $this_status;
   }
 
-  return $status || 'stable';
+  return $status || ( $self->version =~ /_/ ? 'testing' : 'stable' );
+}
+
+# captures environment variables early during Zilla object construction
+has _release_status_from_env => (
+  is => 'ro',
+  isa => Str,
+  builder => '_build_release_status_from_env',
+);
+
+sub _build_release_status_from_env {
+  my ($self) = @_;
+  return $ENV{RELEASE_STATUS} if $ENV{RELEASE_STATUS};
+  return $ENV{TRIAL} ? 'testing' : '';
 }
 
 #pod =attr abstract
@@ -525,13 +540,14 @@ has is_trial => (
 
 has _override_is_trial => (
   is => 'ro',
+  isa => Bool,
   init_arg => 'is_trial',
-  predicate => '_has_override_is_trial',
+  default => 0,
 );
 
 sub _build_is_trial {
     my ($self) = @_;
-    return $self->release_status =~ /\A(?:testing|unstable)\z/;
+    return $self->release_status =~ /\A(?:testing|unstable)\z/ ? 1 : 0;
 }
 
 #pod =attr plugins
@@ -853,7 +869,7 @@ Dist::Zilla - distribution builder; installer not included!
 
 =head1 VERSION
 
-version 5.035
+version 5.036
 
 =head1 DESCRIPTION
 
@@ -897,12 +913,14 @@ Otherwise, the release status will be set from a
 L<ReleaseStatusProvider|Dist::Zilla::Role::ReleaseStatusProvider>, if one
 has been configured.
 
-For backwards compatibility, setting C<is_trial> in F<dist.ini> is equivalent
-to using a C<ReleaseStatusProvider>.
+For backwards compatibility, setting C<is_trial> true in F<dist.ini> is
+equivalent to using a C<ReleaseStatusProvider>.  If C<is_trial> is false,
+it has no effect.
 
 Only B<one> C<ReleaseStatusProvider> may be used.
 
-If no providers are used, the release status defaults to 'stable'.
+If no providers are used, the release status defaults to 'stable' unless there
+is an "_" character in the version, in which case, it defaults to 'testing'.
 
 =head2 abstract
 
@@ -1105,7 +1123,7 @@ Ricardo SIGNES <rjbs@cpan.org>
 
 =head1 CONTRIBUTORS
 
-=for stopwords Ævar Arnfjörð Bjarmason Alexei Znamensky Alex Vandiver ambs Andrew Rodland Andy Jack Apocalypse ben hengst Bernardo Rechea Brian Fraser Caleb Cushing Christian Walde Christopher J. Madsen Cory G Watson csjewell Curtis Brandt Damien KRotkine Danijel Tasov Dave O'Neill Rolsky David Golden Steinbrunner Davor Cubranic Dimitar Petrov Doug Bell Fayland Lam Florian Ragwitz Fred Moyer fREW Schmidt gardnerm Graham Barr Knop Grzegorz Rożniecki Hans Dieter Pearcey Ivan Bessarabov Jakob Voss jantore Jérôme Quelin Jesse Luehrs Vincent John Napiorkowski Jonathan C. Otsuka Rockway Scott Duff Yu Karen Etheridge Kent Fredric Leon Timmermans Lucas Theisen Luc St-Louis Marcel Gruenauer Martin McGrath Mateu X Hunter Mike Doherty Moritz Onken Neil Bowers Nickolay Platonov nperez Olivier Mengué Pedro Melo Randy Stauner robertkrimen Rob Hoelz Robin Smidsrød Shawn M Moore Smylers Steffen Schwigon Steven Haryanto Tatsuhiko Miyagawa Upasana Shukla Vyacheslav Matjukhin Yanick Champoux Yuval Kogman
+=for stopwords Ævar Arnfjörð Bjarmason Alexei Znamensky Alex Vandiver ambs Andrew Rodland Andy Jack Apocalypse ben hengst Bernardo Rechea Brian Fraser Caleb Cushing Christian Walde Christopher J. Madsen Cory G Watson csjewell Curtis Brandt Damien KRotkine Danijel Tasov Dave O'Neill Rolsky David Golden Steinbrunner Davor Cubranic Dimitar Petrov Doug Bell Fayland Lam Florian Ragwitz Fred Moyer fREW Schmidt gardnerm Gianni Ceccarelli Graham Barr Knop Grzegorz Rożniecki Hans Dieter Pearcey Ivan Bessarabov Jakob Voss jantore Jérôme Quelin Jesse Luehrs Vincent John Napiorkowski Jonathan C. Otsuka Rockway Scott Duff Yu Karen Etheridge Kent Fredric Leon Timmermans Lucas Theisen Luc St-Louis Marcel Gruenauer Martin McGrath Mateu X Hunter Mike Doherty Moritz Onken Neil Bowers Nickolay Platonov nperez Olivier Mengué Pedro Melo Randy Stauner robertkrimen Rob Hoelz Robin Smidsrød Shawn M Moore Smylers Steffen Schwigon Steven Haryanto Tatsuhiko Miyagawa Upasana Shukla Vyacheslav Matjukhin Yanick Champoux Yuval Kogman
 
 =over 4
 
@@ -1228,6 +1246,10 @@ fREW Schmidt <frioux@gmail.com>
 =item *
 
 gardnerm <gardnerm@gsicommerce.com>
+
+=item *
+
+Gianni Ceccarelli <gianni.ceccarelli@net-a-porter.com>
 
 =item *
 

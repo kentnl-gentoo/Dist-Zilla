@@ -1,6 +1,6 @@
 package Dist::Zilla::Role::EncodingProvider;
 # ABSTRACT: something that sets a files' encoding
-$Dist::Zilla::Role::EncodingProvider::VERSION = '5.035';
+$Dist::Zilla::Role::EncodingProvider::VERSION = '5.036';
 use Moose::Role;
 with 'Dist::Zilla::Role::Plugin';
 
@@ -31,7 +31,7 @@ Dist::Zilla::Role::EncodingProvider - something that sets a files' encoding
 
 =head1 VERSION
 
-version 5.035
+version 5.036
 
 =head1 DESCRIPTION
 
