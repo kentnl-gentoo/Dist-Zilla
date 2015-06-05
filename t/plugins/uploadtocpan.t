@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More 0.88 tests => 16;
+use Test::More 0.88 tests => 17;
 
 use File::Spec ();
 use Test::DZil qw(Builder simple_ini);
@@ -31,9 +31,9 @@ sub build_tzil {
 #---------------------------------------------------------------------
 # Set responses for the username and password prompts:
 sub set_responses {
-  my $chrome = shift->chrome;
-  $chrome->set_response_for('PAUSE username: ', shift);
-  $chrome->set_response_for('PAUSE password: ', shift);
+  my ($zilla, $username, $pw) = @_;
+  $zilla->chrome->set_response_for('PAUSE username: ', $username);
+  $zilla->chrome->set_response_for("PAUSE password for $username: ", $pw);
 }
 
 #---------------------------------------------------------------------
@@ -138,4 +138,21 @@ my %safety_first = (qw(upload_uri http://bogus.example.com/do/not/upload/),
     !grep({ /fake release happen/i } @$msgs),
     "no release without password"
   );
+}
+
+# Config from dist.ini
+{
+  my $tzil = build_tzil(
+    'FakeRelease',
+    [ UploadToCPAN => {
+        %safety_first,
+        username => 'me',
+        password => 'ohhai',
+      }
+    ],
+  );
+
+  like( exception { $tzil->release },
+        qr/You need to supply a password/,
+        "password set in dist.ini is ignored");
 }

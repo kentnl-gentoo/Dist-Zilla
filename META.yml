@@ -123,10 +123,10 @@ resources:
   bugtracker: https://github.com/rjbs/Dist-Zilla/issues
   homepage: https://github.com/rjbs/Dist-Zilla
   repository: https://github.com/rjbs/Dist-Zilla.git
-version: '5.036'
+version: '5.037'
 x_Dist_Zilla:
   perl:
-    version: '5.021010'
+    version: '5.022000'
   plugins:
     -
       class: Dist::Zilla::Plugin::Git::GatherDir
@@ -142,15 +142,15 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::GatherDir:
           include_untracked: '0'
       name: '@Filter/Git::GatherDir'
-      version: '2.033'
+      version: '2.034'
     -
       class: Dist::Zilla::Plugin::CheckPrereqsIndexed
       name: '@Filter/CheckPrereqsIndexed'
-      version: '0.015'
+      version: '0.016'
     -
       class: Dist::Zilla::Plugin::CheckExtraTests
       name: '@Filter/CheckExtraTests'
-      version: '0.026'
+      version: '0.027'
     -
       class: Dist::Zilla::Plugin::PromptIfStale
       config:
@@ -162,7 +162,7 @@ x_Dist_Zilla:
           phase: build
           skip: []
       name: '@Filter/RJBS-Outdated'
-      version: '0.042'
+      version: '0.044'
     -
       class: Dist::Zilla::Plugin::PromptIfStale
       config:
@@ -173,7 +173,7 @@ x_Dist_Zilla:
           phase: release
           skip: []
       name: '@Filter/CPAN-Outdated'
-      version: '0.042'
+      version: '0.044'
     -
       class: Dist::Zilla::Plugin::PruneCruft
       name: '@Filter/@Filter/PruneCruft'
@@ -239,7 +239,7 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: .
       name: '@Filter/Git::NextVersion'
-      version: '2.033'
+      version: '2.034'
     -
       class: Dist::Zilla::Plugin::PkgVersion
       name: '@Filter/PkgVersion'
@@ -289,67 +289,67 @@ x_Dist_Zilla:
             -
               class: Pod::Weaver::Plugin::EnsurePod5
               name: '@CorePrep/EnsurePod5'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Plugin::H1Nester
               name: '@CorePrep/H1Nester'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Plugin::SingleEncoding
               name: '@RJBS/SingleEncoding'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Name
               name: '@RJBS/Name'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Version
               name: '@RJBS/Version'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Region
               name: '@RJBS/Prelude'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Generic
               name: '@RJBS/Synopsis'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Generic
               name: '@RJBS/Description'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Generic
               name: '@RJBS/Overview'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Generic
               name: '@RJBS/Stability'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Collect
               name: Attributes
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Collect
               name: Methods
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Collect
               name: Functions
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Leftovers
               name: '@RJBS/Leftovers'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Region
               name: '@RJBS/postlude'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Authors
               name: '@RJBS/Authors'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Section::Contributors
               name: '@RJBS/Contributors'
@@ -357,17 +357,17 @@ x_Dist_Zilla:
             -
               class: Pod::Weaver::Section::Legal
               name: '@RJBS/Legal'
-              version: '4.011'
+              version: '4.012'
             -
               class: Pod::Weaver::Plugin::Transformer
               name: '@RJBS/List'
-              version: '4.011'
+              version: '4.012'
       name: '@Filter/PodWeaver'
       version: '4.006'
     -
       class: Dist::Zilla::Plugin::GithubMeta
       name: '@Filter/GithubMeta'
-      version: '0.48'
+      version: '0.50'
     -
       class: Dist::Zilla::Plugin::Git::Check
       config:
@@ -382,7 +382,7 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: .
       name: '@Filter/@Git/Check'
-      version: '2.033'
+      version: '2.034'
     -
       class: Dist::Zilla::Plugin::Git::Commit
       config:
@@ -399,21 +399,21 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: .
       name: '@Filter/@Git/Commit'
-      version: '2.033'
+      version: '2.034'
     -
       class: Dist::Zilla::Plugin::Git::Tag
       config:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: '5.036'
+          tag: '5.037'
           tag_format: '%v'
           tag_message: v%v
           time_zone: local
         Dist::Zilla::Role::Git::Repo:
           repo_root: .
       name: '@Filter/@Git/Tag'
-      version: '2.033'
+      version: '2.034'
     -
       class: Dist::Zilla::Plugin::Git::Push
       config:
@@ -425,7 +425,7 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: .
       name: '@Filter/@Git/Push'
-      version: '2.033'
+      version: '2.034'
     -
       class: Dist::Zilla::Plugin::Git::Contributors
       config:
@@ -504,7 +504,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Test::CheckBreaks:
           conflicts_module: Moose::Conflicts
         Dist::Zilla::Role::ModuleMetadata:
-          Module::Metadata: '1.000027'
+          Module::Metadata: '1.000026'
           version: '0.003'
       name: Test::CheckBreaks
       version: '0.012'
@@ -543,13 +543,13 @@ x_Dist_Zilla:
   zilla:
     class: Dist::Zilla::Dist::Builder
     config:
-      is_trial: ''
+      is_trial: '0'
     version: '5.036'
 x_breaks:
   Dist::Zilla::App::Command::stale: '< 0.040'
   Dist::Zilla::App::Command::update: '<= 0.04'
   Dist::Zilla::Plugin::MakeMaker::Awesome: '< 0.22'
-  Dist::Zilla::Plugin::Run: '<= 0.034'
+  Dist::Zilla::Plugin::Run: '<= 0.035'
   Dist::Zilla::Plugin::TrialVersionComment: '<= 0.003'
 x_contributors:
   - 'Ævar Arnfjörð Bjarmason <avarab@gmail.com>'
@@ -573,6 +573,7 @@ x_contributors:
   - "Dave O'Neill <dmo@dmo.ca>"
   - 'Dave Rolsky <autarch@urth.org>'
   - 'David Golden <dagolden@cpan.org>'
+  - 'David H. Adler <dha@pobox.com>'
   - 'David Steinbrunner <dsteinbrunner@pobox.com>'
   - 'Davor Cubranic <cubranic@stat.ubc.ca>'
   - 'Dimitar Petrov <mitakaa@gmail.com>'
@@ -585,6 +586,7 @@ x_contributors:
   - 'Gianni Ceccarelli <gianni.ceccarelli@net-a-porter.com>'
   - 'Graham Barr <gbarr@pobox.com>'
   - 'Graham Knop <haarg@haarg.org>'
+  - 'Graham Ollis <plicease@cpan.org>'
   - 'Grzegorz Rożniecki <xaerxess@gmail.com>'
   - 'Hans Dieter Pearcey <hdp@weftsoar.net>'
   - 'Ivan Bessarabov <ivan@bessarabov.ru>'
