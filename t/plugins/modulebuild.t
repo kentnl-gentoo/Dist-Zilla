@@ -50,9 +50,7 @@ use Test::DZil;
     'configure_requires' => {
       'Module::Build' => '0.28',
     },
-    'recommends' => {},
     'recursive_test_files' => ignore,
-    'script_files' => [],
   );
 
   cmp_deeply(
@@ -96,9 +94,11 @@ use Test::DZil;
     { dist_root => 'corpus/dist/DZT' },
     {
       add_files => {
-        'source/dist.ini' => simple_ini(
-          'GatherDir', [ 'ModuleBuild' => { mb_class => 'Foo::Build', mb_lib => 'inc,priv,something' } ],
-        ),
+        'source/dist.ini' => simple_ini( 'GatherDir', [ 'ModuleBuild' => {
+            mb_class      => 'Foo::Build',
+            mb_lib        => 'inc,priv,something',
+            build_element => [qw(js sql)],
+        } ] ),
       },
     },
   );
@@ -112,10 +112,17 @@ use Test::DZil;
     q{use lib qw{inc priv something}; use Foo::Build;},
     'loads custom class from items specificed in mb_lib'
   );
+  is(
+    $modulebuild->_add_build_elements,
+    '$build->add_build_element($_) for qw(js sql);',
+    'adds build elements'
+  );
 
   my $build = $tzil->slurp_file('build/Build.PL');
 
   like($build, qr/\QFoo::Build->new/, 'Build.PL calls ->new on Foo::Build');
+  like($build, qr/\$build->add_build_element\(\$_\) for qw\(js sql\);/,
+       'Build.PL calls add_build_element for all elements');
 }
 
 done_testing;
