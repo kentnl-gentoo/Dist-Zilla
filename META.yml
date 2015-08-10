@@ -79,7 +79,7 @@ requires:
   Moose::Role: '0'
   Moose::Util::TypeConstraints: '0'
   MooseX::LazyRequire: '0'
-  MooseX::Role::Parameterized: '0'
+  MooseX::Role::Parameterized: '1.01'
   MooseX::SetOnce: '0'
   MooseX::Types: '0'
   MooseX::Types::Moose: '0'
@@ -123,7 +123,7 @@ resources:
   bugtracker: https://github.com/rjbs/Dist-Zilla/issues
   homepage: https://github.com/rjbs/Dist-Zilla
   repository: https://github.com/rjbs/Dist-Zilla.git
-version: '5.038'
+version: '5.039'
 x_Dist_Zilla:
   perl:
     version: '5.023000'
@@ -408,7 +408,7 @@ x_Dist_Zilla:
           branch: ~
           changelog: Changes
           signed: 0
-          tag: '5.038'
+          tag: '5.039'
           tag_format: '%v'
           tag_message: v%v
         Dist::Zilla::Role::Git::Repo:

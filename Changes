@@ -1,5 +1,9 @@
 Revision history for Dist-Zilla
 
+5.039     2015-08-10 09:03:08-04:00 America/New_York
+        - update required version of MooseX::Role::Parameterized; older
+          versions work, but can cause a bunch of unwanted warnings
+
 5.038     2015-08-07 22:16:50-04:00 America/New_York
         - [License] can be given a filename option to use instead of LICENSE
         - dzil listdeps --develop now exists as an alias for dzil listdeps
@@ -9,7 +13,6 @@ Revision history for Dist-Zilla
         - PkgVersion now skips .pod files (thanks, David Golden)
         - build_element support added for [ModuleBuild] (thanks, David
           Wheeler!)
-        - PkgVersion now skips .pod files (David Golden)
         - new native filefinder :ExtraTestFiles (thanks, Karen Etheridge)
         - [AutoPrereqs] now looks for develop prerequisites in xt/ (thanks,
           Karen Etheridge)

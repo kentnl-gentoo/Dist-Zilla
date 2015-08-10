@@ -73,7 +73,7 @@ my %WriteMakefileArgs = (
     "Moose::Role" => 0,
     "Moose::Util::TypeConstraints" => 0,
     "MooseX::LazyRequire" => 0,
-    "MooseX::Role::Parameterized" => 0,
+    "MooseX::Role::Parameterized" => "1.01",
     "MooseX::SetOnce" => 0,
     "MooseX::Types" => 0,
     "MooseX::Types::Moose" => 0,
@@ -125,7 +125,7 @@ my %WriteMakefileArgs = (
     "lib" => 0,
     "utf8" => 0
   },
-  "VERSION" => "5.038",
+  "VERSION" => "5.039",
   "test" => {
     "TESTS" => "t/*.t t/commands/*.t t/diagnostics/*.t t/plugins/*.t"
   }
@@ -181,7 +181,7 @@ my %FallbackPrereqs = (
   "Moose::Role" => 0,
   "Moose::Util::TypeConstraints" => 0,
   "MooseX::LazyRequire" => 0,
-  "MooseX::Role::Parameterized" => 0,
+  "MooseX::Role::Parameterized" => "1.01",
   "MooseX::SetOnce" => 0,
   "MooseX::Types" => 0,
   "MooseX::Types::Moose" => 0,
