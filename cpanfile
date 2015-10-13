@@ -1,5 +1,5 @@
 requires "App::Cmd::Command::version" => "0";
-requires "App::Cmd::Setup" => "0.309";
+requires "App::Cmd::Setup" => "0.327";
 requires "App::Cmd::Tester" => "0.306";
 requires "App::Cmd::Tester::CaptureExternal" => "0";
 requires "Archive::Tar" => "0";
@@ -60,7 +60,6 @@ requires "Pod::Eventual" => "0.091480";
 requires "Scalar::Util" => "0";
 requires "Software::License" => "0.101370";
 requires "Software::LicenseUtils" => "0";
-requires "Storable" => "0";
 requires "String::Formatter" => "0.100680";
 requires "String::RewritePrefix" => "0.005";
 requires "Sub::Exporter" => "0";
@@ -87,7 +86,7 @@ recommends "Term::ReadLine::Gnu" => "0";
 suggests "PPI::XS" => "0";
 
 on 'test' => sub {
-  requires "CPAN::Meta::Check" => "0.007";
+  requires "CPAN::Meta::Check" => "0.011";
   requires "CPAN::Meta::Requirements" => "2.121";
   requires "ExtUtils::MakeMaker" => "0";
   requires "ExtUtils::Manifest" => "1.66";
@@ -111,5 +110,6 @@ on 'configure' => sub {
 };
 
 on 'develop' => sub {
+  requires "Test::More" => "0";
   requires "Test::Pod" => "1.41";
 };

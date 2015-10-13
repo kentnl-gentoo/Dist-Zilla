@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-# this test was generated with Dist::Zilla::Plugin::Test::CheckBreaks 0.012
+# this test was generated with Dist::Zilla::Plugin::Test::CheckBreaks 0.013
 
 use Test::More 0.88;
 
@@ -13,6 +13,7 @@ SKIP: {
     pass 'conflicts checked via Moose::Conflicts';
 }
 
+# this data duplicates x_breaks in META.json
 my $breaks = {
   "Dist::Zilla::App::Command::stale" => "< 0.040",
   "Dist::Zilla::App::Command::update" => "<= 0.04",
@@ -25,7 +26,7 @@ use CPAN::Meta::Requirements;
 my $reqs = CPAN::Meta::Requirements->new;
 $reqs->add_string_requirement($_, $breaks->{$_}) foreach keys %$breaks;
 
-use CPAN::Meta::Check 0.007 'check_requirements';
+use CPAN::Meta::Check 0.011 'check_requirements';
 our $result = check_requirements($reqs, 'conflicts');
 
 if (my @breaks = grep { defined $result->{$_} } keys %$result)
