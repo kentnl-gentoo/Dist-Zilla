@@ -1,5 +1,5 @@
 requires "App::Cmd::Command::version" => "0";
-requires "App::Cmd::Setup" => "0.327";
+requires "App::Cmd::Setup" => "0.330";
 requires "App::Cmd::Tester" => "0.306";
 requires "App::Cmd::Tester::CaptureExternal" => "0";
 requires "Archive::Tar" => "0";
@@ -17,7 +17,7 @@ requires "Config::MVP::Assembler::WithBundles" => "2.200010";
 requires "Config::MVP::Reader" => "2.101540";
 requires "Config::MVP::Reader::Findable::ByExtension" => "0";
 requires "Config::MVP::Reader::Finder" => "0";
-requires "Config::MVP::Reader::INI" => "2";
+requires "Config::MVP::Reader::INI" => "2.101461";
 requires "Config::MVP::Section" => "2.200009";
 requires "Data::Dumper" => "0";
 requires "Data::Section" => "0.200002";

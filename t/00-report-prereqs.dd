@@ -18,7 +18,7 @@ do { my $x = {
                                       },
                       'requires' => {
                                       'App::Cmd::Command::version' => '0',
-                                      'App::Cmd::Setup' => '0.327',
+                                      'App::Cmd::Setup' => '0.330',
                                       'App::Cmd::Tester' => '0.306',
                                       'App::Cmd::Tester::CaptureExternal' => '0',
                                       'Archive::Tar' => '0',
@@ -36,7 +36,7 @@ do { my $x = {
                                       'Config::MVP::Reader' => '2.101540',
                                       'Config::MVP::Reader::Findable::ByExtension' => '0',
                                       'Config::MVP::Reader::Finder' => '0',
-                                      'Config::MVP::Reader::INI' => '2',
+                                      'Config::MVP::Reader::INI' => '2.101461',
                                       'Config::MVP::Section' => '2.200009',
                                       'Data::Dumper' => '0',
                                       'Data::Section' => '0.200002',
