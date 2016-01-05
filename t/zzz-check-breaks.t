@@ -1,9 +1,9 @@
 use strict;
 use warnings;
 
-# this test was generated with Dist::Zilla::Plugin::Test::CheckBreaks 0.013
+# this test was generated with Dist::Zilla::Plugin::Test::CheckBreaks 0.014
 
-use Test::More 0.88;
+use Test::More tests => 1;
 
 SKIP: {
     eval 'require Moose::Conflicts; Moose::Conflicts->check_conflicts';
@@ -23,11 +23,12 @@ my $breaks = {
 };
 
 use CPAN::Meta::Requirements;
+use CPAN::Meta::Check 0.011;
+
 my $reqs = CPAN::Meta::Requirements->new;
 $reqs->add_string_requirement($_, $breaks->{$_}) foreach keys %$breaks;
 
-use CPAN::Meta::Check 0.011 'check_requirements';
-our $result = check_requirements($reqs, 'conflicts');
+our $result = CPAN::Meta::Check::check_requirements($reqs, 'conflicts');
 
 if (my @breaks = grep { defined $result->{$_} } keys %$result)
 {
@@ -35,5 +36,3 @@ if (my @breaks = grep { defined $result->{$_} } keys %$result)
     diag "$result->{$_}" for sort @breaks;
     diag "\n", 'You should now update these modules!';
 }
-
-done_testing;
