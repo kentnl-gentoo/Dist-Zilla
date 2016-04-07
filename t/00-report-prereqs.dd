@@ -3,6 +3,9 @@ do { my $x = {
                         'requires' => {
                                         'ExtUtils::MakeMaker' => '0',
                                         'File::ShareDir::Install' => '0.06'
+                                      },
+                        'suggests' => {
+                                        'JSON::PP' => '2.27300'
                                       }
                       },
        'develop' => {
@@ -54,8 +57,7 @@ do { my $x = {
                                       'File::Temp' => '0',
                                       'File::pushd' => '0',
                                       'JSON::MaybeXS' => '0',
-                                      'List::MoreUtils' => '0',
-                                      'List::Util' => '1.33',
+                                      'List::Util' => '1.45',
                                       'Log::Dispatchouli' => '1.102220',
                                       'Mixin::Linewise::Readers' => '0.100',
                                       'Module::CoreList' => '0',
@@ -80,7 +82,7 @@ do { my $x = {
                                       'Software::License' => '0.101370',
                                       'Software::LicenseUtils' => '0',
                                       'String::Formatter' => '0.100680',
-                                      'String::RewritePrefix' => '0.005',
+                                      'String::RewritePrefix' => '0.006',
                                       'Sub::Exporter' => '0',
                                       'Sub::Exporter::ForMethods' => '0',
                                       'Sub::Exporter::Util' => '0',

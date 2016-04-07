@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::AutoPrereqs;
 # ABSTRACT: automatically extract prereqs from your modules
-$Dist::Zilla::Plugin::AutoPrereqs::VERSION = '5.043';
+$Dist::Zilla::Plugin::AutoPrereqs::VERSION = '5.044';
 use Moose;
 with(
   'Dist::Zilla::Role::PrereqSource',
@@ -134,7 +134,8 @@ sub register_prereqs {
   require Perl::PrereqScanner;
   Perl::PrereqScanner->VERSION('1.016'); # don't skip "lib"
   require CPAN::Meta::Requirements;
-  require List::MoreUtils;  # uniq
+  require List::Util;
+  List::Util->VERSION(1.45);  # uniq
 
   my @modules;
 
@@ -207,7 +208,7 @@ sub register_prereqs {
     }
 
     # remove prereqs shipped with current dist
-    $self->log_debug([ 'excluding local packages: %s', sub { join(', ', List::MoreUtils::uniq @modules) } ]);
+    $self->log_debug([ 'excluding local packages: %s', sub { join(', ', List::Util::uniq @modules) } ]);
     $req->clear_requirement($_) for @modules;
 
     $req->clear_requirement($_) for qw(Config DB Errno NEXT Pod::Functions); # never indexed
@@ -242,7 +243,7 @@ Dist::Zilla::Plugin::AutoPrereqs - automatically extract prereqs from your modul
 
 =head1 VERSION
 
-version 5.043
+version 5.044
 
 =head1 SYNOPSIS
 

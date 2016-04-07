@@ -2,10 +2,9 @@ use strict;
 use warnings;
 package Dist::Zilla::Util;
 # ABSTRACT: random snippets of code that Dist::Zilla wants
-$Dist::Zilla::Util::VERSION = '5.043';
+$Dist::Zilla::Util::VERSION = '5.044';
 use Carp ();
 use Encode ();
-use String::RewritePrefix 0.002; # better string context behavior
 
 {
   package
@@ -89,20 +88,17 @@ sub abstract_from_file {
 #pod
 #pod =cut
 
+use String::RewritePrefix 0.006 rewrite => {
+  -as => '_expand_config_package_name',
+  prefixes => {
+    '=' => '',
+    '@' => 'Dist::Zilla::PluginBundle::',
+    '%' => 'Dist::Zilla::Stash::',
+    ''  => 'Dist::Zilla::Plugin::',
+  },
+};
 sub expand_config_package_name {
-  my ($self, $package) = @_;
-
-  my $str = String::RewritePrefix->rewrite(
-    {
-      '=' => '',
-      '@' => 'Dist::Zilla::PluginBundle::',
-      '%' => 'Dist::Zilla::Stash::',
-      ''  => 'Dist::Zilla::Plugin::',
-    },
-    $package,
-  );
-
-  return $str;
+  shift; goto &_expand_config_package_name
 }
 
 sub _global_config_root {
@@ -129,7 +125,7 @@ sub _assert_loaded_class_version_ok {
     die( sprintf
       "%s version (%s) does not match required version: %s\n",
       $pkg,
-      $have_version,
+      ( defined $have_version ? $have_version : 'undef' ),
       $version,
     );
   }
@@ -149,7 +145,7 @@ Dist::Zilla::Util - random snippets of code that Dist::Zilla wants
 
 =head1 VERSION
 
-version 5.043
+version 5.044
 
 =head1 METHODS
 

@@ -2,10 +2,10 @@ use strict;
 use warnings;
 package Dist::Zilla::Util::AuthorDeps;
 # ABSTRACT: Utils for listing your distribution's author dependencies
-$Dist::Zilla::Util::AuthorDeps::VERSION = '5.043';
+$Dist::Zilla::Util::AuthorDeps::VERSION = '5.044';
 use Dist::Zilla::Util;
 use Path::Tiny;
-use List::MoreUtils ();
+use List::Util 1.45 ();
 
 
 sub format_author_deps {
@@ -97,7 +97,6 @@ sub extract_author_deps {
 
   # Now that we have a sorted list of packages, use that to build an array of
   # hashrefs for display.
-  require List::MoreUtils;
   require Class::Load;
 
   my @final =
@@ -109,7 +108,7 @@ sub extract_author_deps {
           : (! Class::Load::try_load_class($_, ($vermap->{$_} ? {-version => $vermap->{$_}} : ())))
         : 1
       }
-    List::MoreUtils::uniq
+    List::Util::uniq
     @packages;
 
   return \@final;
@@ -129,7 +128,7 @@ Dist::Zilla::Util::AuthorDeps - Utils for listing your distribution's author dep
 
 =head1 VERSION
 
-version 5.043
+version 5.044
 
 =head1 AUTHOR
 

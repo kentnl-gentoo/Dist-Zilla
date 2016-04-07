@@ -35,8 +35,7 @@ requires "File::Spec" => "0";
 requires "File::Temp" => "0";
 requires "File::pushd" => "0";
 requires "JSON::MaybeXS" => "0";
-requires "List::MoreUtils" => "0";
-requires "List::Util" => "1.33";
+requires "List::Util" => "1.45";
 requires "Log::Dispatchouli" => "1.102220";
 requires "Mixin::Linewise::Readers" => "0.100";
 requires "Module::CoreList" => "0";
@@ -61,7 +60,7 @@ requires "Scalar::Util" => "0";
 requires "Software::License" => "0.101370";
 requires "Software::LicenseUtils" => "0";
 requires "String::Formatter" => "0.100680";
-requires "String::RewritePrefix" => "0.005";
+requires "String::RewritePrefix" => "0.006";
 requires "Sub::Exporter" => "0";
 requires "Sub::Exporter::ForMethods" => "0";
 requires "Sub::Exporter::Util" => "0";
@@ -107,6 +106,10 @@ on 'test' => sub {
 on 'configure' => sub {
   requires "ExtUtils::MakeMaker" => "0";
   requires "File::ShareDir::Install" => "0.06";
+};
+
+on 'configure' => sub {
+  suggests "JSON::PP" => "2.27300";
 };
 
 on 'develop' => sub {
