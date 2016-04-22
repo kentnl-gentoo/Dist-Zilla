@@ -1,6 +1,6 @@
 package Dist::Zilla::Prereqs;
 # ABSTRACT: the prerequisites of a Dist::Zilla distribution
-$Dist::Zilla::Prereqs::VERSION = '5.045';
+$Dist::Zilla::Prereqs::VERSION = '5.046';
 use Moose;
 use MooseX::Types::Moose qw(Bool HashRef);
 
@@ -141,7 +141,7 @@ Dist::Zilla::Prereqs - the prerequisites of a Dist::Zilla distribution
 
 =head1 VERSION
 
-version 5.045
+version 5.046
 
 =head1 DESCRIPTION
 

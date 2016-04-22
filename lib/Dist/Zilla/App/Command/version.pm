@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::App::Command::version;
 # ABSTRACT: display dzil's version
-$Dist::Zilla::App::Command::version::VERSION = '5.045';
+$Dist::Zilla::App::Command::version::VERSION = '5.046';
 use Dist::Zilla::App -command;
 use App::Cmd::Command::version;
 BEGIN {
@@ -40,7 +40,7 @@ Dist::Zilla::App::Command::version - display dzil's version
 
 =head1 VERSION
 
-version 5.045
+version 5.046
 
 =head1 SYNOPSIS
 

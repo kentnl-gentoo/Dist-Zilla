@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::PodCoverageTests;
 # ABSTRACT: a author test for Pod coverage
-$Dist::Zilla::Plugin::PodCoverageTests::VERSION = '5.045';
+$Dist::Zilla::Plugin::PodCoverageTests::VERSION = '5.046';
 use Moose;
 extends 'Dist::Zilla::Plugin::InlineFiles';
 with 'Dist::Zilla::Role::PrereqSource';
@@ -53,7 +53,7 @@ Dist::Zilla::Plugin::PodCoverageTests - a author test for Pod coverage
 
 =head1 VERSION
 
-version 5.045
+version 5.046
 
 =head1 DESCRIPTION
 
