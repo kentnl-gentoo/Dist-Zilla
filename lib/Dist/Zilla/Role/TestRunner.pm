@@ -1,6 +1,6 @@
 package Dist::Zilla::Role::TestRunner;
 # ABSTRACT: something used as a delegating agent to 'dzil test'
-$Dist::Zilla::Role::TestRunner::VERSION = '5.044';
+$Dist::Zilla::Role::TestRunner::VERSION = '5.045';
 use Moose::Role;
 with 'Dist::Zilla::Role::Plugin';
 
@@ -59,7 +59,7 @@ Dist::Zilla::Role::TestRunner - something used as a delegating agent to 'dzil te
 
 =head1 VERSION
 
-version 5.044
+version 5.045
 
 =head1 DESCRIPTION
 
@@ -90,7 +90,7 @@ This method should throw an exception on failure.
 
 =head1 AUTHOR
 
-Ricardo SIGNES <rjbs@cpan.org>
+Ricardo SIGNES 🎃 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

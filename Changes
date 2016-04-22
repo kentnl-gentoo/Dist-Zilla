@@ -1,5 +1,24 @@
 Revision history for Dist-Zilla
 
+5.045     2016-04-22 11:37:13+01:00 Europe/London
+        - add 'relationship' option to AutoPrereqs plugin (Karen Etheridge)
+        - PrereqScanner role abstracts much of the AutoPrereqs behavior
+          (thanks, Olivier Mengué!)
+        - remove duplicates from the results of the :ExecFiles filefinder
+        - [MakeMaker] now rejects version ranges in prereqs if eumm_version is
+          not specified to be high enough (7.1101) to guarantee it can be
+          handled (Karen Etheridge)
+        - allow comments in an authordep specification with a version
+        - make FakeReleaser a bit more of a drop-in for UploadToCPAN
+          (Erik Carlsson)
+        - make PkgDist preserve blank line after 'package' for PkgVersion
+          (Chisel Wright)
+        - add rename option to [GatherDir::Template] (Alastair McGowan-Douglas)
+        - META.json is now emitted in ASCII (using \u... for non-ASCII
+          characters) to avoid a bug in older versions of JSON::PP on older
+          versions of perl
+        - "dzil build --in ." no longer allows you to blow away your cwd
+
 5.044     2016-04-06 20:32:14-04:00 America/New_York
         - require a newer List::Util to avoid a dumb bug caused by relying on
           side effects of loading Moose (thanks, Karen Etheridge!)

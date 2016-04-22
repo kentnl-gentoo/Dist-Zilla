@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::App::Command::release;
 # ABSTRACT: release your dist to the CPAN
-$Dist::Zilla::App::Command::release::VERSION = '5.044';
+$Dist::Zilla::App::Command::release::VERSION = '5.045';
 use Dist::Zilla::App -command;
 
 #pod =head1 SYNOPSIS
@@ -52,7 +52,7 @@ Dist::Zilla::App::Command::release - release your dist to the CPAN
 
 =head1 VERSION
 
-version 5.044
+version 5.045
 
 =head1 SYNOPSIS
 
@@ -67,7 +67,7 @@ only option, C<--trial>, will cause it to build a trial build.
 
 =head1 AUTHOR
 
-Ricardo SIGNES <rjbs@cpan.org>
+Ricardo SIGNES 🎃 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

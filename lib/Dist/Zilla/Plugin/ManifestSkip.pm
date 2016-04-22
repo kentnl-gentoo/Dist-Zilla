@@ -1,6 +1,6 @@
 package Dist::Zilla::Plugin::ManifestSkip;
 # ABSTRACT: decline to build files that appear in a MANIFEST.SKIP-like file
-$Dist::Zilla::Plugin::ManifestSkip::VERSION = '5.044';
+$Dist::Zilla::Plugin::ManifestSkip::VERSION = '5.045';
 use Moose;
 with 'Dist::Zilla::Role::FilePruner';
 
@@ -90,7 +90,7 @@ Dist::Zilla::Plugin::ManifestSkip - decline to build files that appear in a MANI
 
 =head1 VERSION
 
-version 5.044
+version 5.045
 
 =head1 DESCRIPTION
 
@@ -119,7 +119,7 @@ Other modules: L<ExtUtils::Manifest>.
 
 =head1 AUTHOR
 
-Ricardo SIGNES <rjbs@cpan.org>
+Ricardo SIGNES 🎃 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

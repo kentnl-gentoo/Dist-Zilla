@@ -81,6 +81,7 @@ requires "strict" => "0";
 requires "version" => "0";
 requires "warnings" => "0";
 recommends "Archive::Tar::Wrapper" => "0.15";
+recommends "Data::OptList" => "0.110";
 recommends "Term::ReadLine::Gnu" => "0";
 suggests "PPI::XS" => "0";
 
@@ -106,10 +107,6 @@ on 'test' => sub {
 on 'configure' => sub {
   requires "ExtUtils::MakeMaker" => "0";
   requires "File::ShareDir::Install" => "0.06";
-};
-
-on 'configure' => sub {
-  suggests "JSON::PP" => "2.27300";
 };
 
 on 'develop' => sub {

@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Dist::Zilla::Util;
 # ABSTRACT: random snippets of code that Dist::Zilla wants
-$Dist::Zilla::Util::VERSION = '5.044';
+$Dist::Zilla::Util::VERSION = '5.045';
 use Carp ();
 use Encode ();
 
@@ -145,7 +145,7 @@ Dist::Zilla::Util - random snippets of code that Dist::Zilla wants
 
 =head1 VERSION
 
-version 5.044
+version 5.045
 
 =head1 METHODS
 
@@ -186,7 +186,7 @@ otherwise, C<Dist::Zilla::Plugin::> is prepended
 
 =head1 AUTHOR
 
-Ricardo SIGNES <rjbs@cpan.org>
+Ricardo SIGNES 🎃 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

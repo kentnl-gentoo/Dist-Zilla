@@ -1,6 +1,6 @@
 package Dist::Zilla::Stash::User;
 # ABSTRACT: a stash of user name and email
-$Dist::Zilla::Stash::User::VERSION = '5.044';
+$Dist::Zilla::Stash::User::VERSION = '5.045';
 use Moose;
 
 use namespace::autoclean;
@@ -38,11 +38,11 @@ Dist::Zilla::Stash::User - a stash of user name and email
 
 =head1 VERSION
 
-version 5.044
+version 5.045
 
 =head1 AUTHOR
 
-Ricardo SIGNES <rjbs@cpan.org>
+Ricardo SIGNES 🎃 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

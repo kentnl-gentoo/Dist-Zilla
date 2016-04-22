@@ -1,6 +1,6 @@
 package Dist::Zilla::MVP::Assembler::Zilla;
 # ABSTRACT: Dist::Zilla::MVP::Assembler for the Dist::Zilla object
-$Dist::Zilla::MVP::Assembler::Zilla::VERSION = '5.044';
+$Dist::Zilla::MVP::Assembler::Zilla::VERSION = '5.045';
 use Moose;
 extends 'Dist::Zilla::MVP::Assembler';
 
@@ -82,7 +82,7 @@ Dist::Zilla::MVP::Assembler::Zilla - Dist::Zilla::MVP::Assembler for the Dist::Z
 
 =head1 VERSION
 
-version 5.044
+version 5.045
 
 =head1 OVERVIEW
 
@@ -113,7 +113,7 @@ is already taken, in which case an exception is raised.
 
 =head1 AUTHOR
 
-Ricardo SIGNES <rjbs@cpan.org>
+Ricardo SIGNES 🎃 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

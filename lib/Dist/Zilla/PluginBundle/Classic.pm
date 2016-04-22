@@ -1,6 +1,6 @@
 package Dist::Zilla::PluginBundle::Classic;
 # ABSTRACT: the classic (old) default configuration for Dist::Zilla
-$Dist::Zilla::PluginBundle::Classic::VERSION = '5.044';
+$Dist::Zilla::PluginBundle::Classic::VERSION = '5.045';
 use Moose;
 with 'Dist::Zilla::Role::PluginBundle::Easy';
 
@@ -83,7 +83,7 @@ Dist::Zilla::PluginBundle::Classic - the classic (old) default configuration for
 
 =head1 VERSION
 
-version 5.044
+version 5.045
 
 =head1 DESCRIPTION
 
@@ -174,7 +174,7 @@ L<@Basic|Dist::Zilla::PluginBundle::Basic>
 
 =head1 AUTHOR
 
-Ricardo SIGNES <rjbs@cpan.org>
+Ricardo SIGNES 🎃 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
