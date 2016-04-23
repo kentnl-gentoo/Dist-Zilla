@@ -151,7 +151,7 @@
       "bugtracker" : {
          "web" : "https://github.com/rjbs/Dist-Zilla/issues"
       },
-      "homepage" : "https://github.com/rjbs/Dist-Zilla",
+      "homepage" : "http://dzil.org/",
       "repository" : {
          "type" : "git",
          "url" : "https://github.com/rjbs/Dist-Zilla.git",
@@ -160,7 +160,7 @@
       "x_IRC" : "irc://irc.perl.org/#distzilla",
       "x_MailingList" : "http://dzil.org/#mailing-list"
    },
-   "version" : "5.046",
+   "version" : "5.047",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.023009"
@@ -527,7 +527,7 @@
                   "branch" : null,
                   "changelog" : "Changes",
                   "signed" : 0,
-                  "tag" : "5.046",
+                  "tag" : "5.047",
                   "tag_format" : "%v",
                   "tag_message" : "v%v"
                },
@@ -571,7 +571,7 @@
                }
             },
             "name" : "@Filter/Git::Contributors",
-            "version" : "0.021"
+            "version" : "0.022"
          },
          {
             "class" : "Dist::Zilla::Plugin::ModuleShareDirs",
