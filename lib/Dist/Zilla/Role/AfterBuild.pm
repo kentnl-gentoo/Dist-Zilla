@@ -1,6 +1,6 @@
-package Dist::Zilla::Role::AfterBuild;
+package Dist::Zilla::Role::AfterBuild 6.001;
 # ABSTRACT: something that runs after building is mostly complete
-$Dist::Zilla::Role::AfterBuild::VERSION = '5.047';
+
 use Moose::Role;
 with 'Dist::Zilla::Role::Plugin';
 
@@ -32,7 +32,7 @@ Dist::Zilla::Role::AfterBuild - something that runs after building is mostly com
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 DESCRIPTION
 

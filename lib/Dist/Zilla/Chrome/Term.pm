@@ -1,6 +1,6 @@
-package Dist::Zilla::Chrome::Term;
+package Dist::Zilla::Chrome::Term 6.001;
 # ABSTRACT: chrome used for terminal-based interaction
-$Dist::Zilla::Chrome::Term::VERSION = '5.047';
+
 use Moose;
 
 #pod =head1 OVERVIEW
@@ -85,7 +85,7 @@ sub prompt_str {
   }
   my $input_bytes = $self->term_ui->get_reply(
     prompt => $encode->($prompt),
-    allow  => $check || sub { defined $_[0] and length $_[0] },
+    allow  => $check || sub { length $_[0] },
     (defined $default
       ? (default => $encode->($default))
       : ()
@@ -152,7 +152,7 @@ Dist::Zilla::Chrome::Term - chrome used for terminal-based interaction
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 OVERVIEW
 

@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::App::Command::test;
+package Dist::Zilla::App::Command::test 6.001;
 # ABSTRACT: test your dist
-$Dist::Zilla::App::Command::test::VERSION = '5.047';
+
 use Dist::Zilla::App -command;
 
 #pod =head1 SYNOPSIS
@@ -100,7 +100,7 @@ Dist::Zilla::App::Command::test - test your dist
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 SYNOPSIS
 

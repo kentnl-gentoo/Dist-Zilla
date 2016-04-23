@@ -1,6 +1,6 @@
-package Dist::Zilla::PluginBundle::Basic;
+package Dist::Zilla::PluginBundle::Basic 6.001;
 # ABSTRACT: the basic plugins to maintain and release CPAN dists
-$Dist::Zilla::PluginBundle::Basic::VERSION = '5.047';
+
 use Moose;
 with 'Dist::Zilla::Role::PluginBundle::Easy';
 
@@ -78,7 +78,7 @@ Dist::Zilla::PluginBundle::Basic - the basic plugins to maintain and release CPA
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 DESCRIPTION
 

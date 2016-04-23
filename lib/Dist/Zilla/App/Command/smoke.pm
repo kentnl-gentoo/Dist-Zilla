@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::App::Command::smoke;
+package Dist::Zilla::App::Command::smoke 6.001;
 # ABSTRACT: smoke your dist
-$Dist::Zilla::App::Command::smoke::VERSION = '5.047';
+
 use Dist::Zilla::App -command;
 
 #pod =head1 SYNOPSIS
@@ -78,7 +78,7 @@ Dist::Zilla::App::Command::smoke - smoke your dist
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 SYNOPSIS
 

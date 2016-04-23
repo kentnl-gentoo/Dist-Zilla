@@ -1,6 +1,6 @@
-package Dist::Zilla::Stash::User;
+package Dist::Zilla::Stash::User 6.001;
 # ABSTRACT: a stash of user name and email
-$Dist::Zilla::Stash::User::VERSION = '5.047';
+
 use Moose;
 
 use namespace::autoclean;
@@ -38,7 +38,7 @@ Dist::Zilla::Stash::User - a stash of user name and email
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 AUTHOR
 

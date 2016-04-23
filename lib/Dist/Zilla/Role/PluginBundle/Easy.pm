@@ -1,7 +1,7 @@
-package Dist::Zilla::Role::PluginBundle::Easy;
+package Dist::Zilla::Role::PluginBundle::Easy 6.001;
 # ABSTRACT: something that bundles a bunch of plugins easily
 # This plugin was originally contributed by Christopher J. Madsen
-$Dist::Zilla::Role::PluginBundle::Easy::VERSION = '5.047';
+
 use Moose::Role;
 with 'Dist::Zilla::Role::PluginBundle';
 
@@ -226,7 +226,7 @@ Dist::Zilla::Role::PluginBundle::Easy - something that bundles a bunch of plugin
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 SYNOPSIS
 

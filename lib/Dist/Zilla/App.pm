@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::App;
+package Dist::Zilla::App 6.001;
 # ABSTRACT: Dist::Zilla's App::Cmd
-$Dist::Zilla::App::VERSION = '5.047';
+
 use App::Cmd::Setup 0.330 -app; # better compilation error detection
 
 use Carp ();
@@ -12,8 +12,9 @@ sub global_opt_spec {
   my ($self) = @_;
 
   return (
-    [ "verbose|v:s@", "log additional output" ],
-    [ "lib-inc|I=s@",     "additional \@INC dirs", {
+    [ "verbose|v",           "log additional output" ],
+    [ "verbose-plugin|V=s@", "log additional output from some plugins only" ],
+    [ "lib-inc|I=s@",        "additional \@INC dirs", {
         callbacks => { 'always fine' => sub { unshift @INC, @{$_[0]}; } }
     } ],
     $self->SUPER::global_opt_spec,
@@ -33,7 +34,7 @@ sub _build_global_stashes {
   require Dist::Zilla::Util;
   my $config_dir  = Dist::Zilla::Util->_global_config_root;
 
-  my $config_base = $config_dir->file('config');
+  my $config_base = $config_dir->child('config');
 
   require Dist::Zilla::MVP::Reader::Finder;
   require Dist::Zilla::MVP::Assembler::GlobalConfig;
@@ -103,11 +104,11 @@ sub chrome {
 
   $self->{__chrome__} = Dist::Zilla::Chrome::Term->new;
 
-  my @v_plugins = $self->global_options->verbose
-                ? grep { length } @{ $self->global_options->verbose }
+  my @v_plugins = $self->global_options->verbose_plugin
+                ? grep { length } @{ $self->global_options->verbose_plugin }
                 : ();
 
-  my $verbose = $self->global_options->verbose && ! @v_plugins;
+  my $verbose = $self->global_options->verbose;
 
   $self->{__chrome__}->logger->set_debug($verbose ? 1 : 0);
 
@@ -120,11 +121,11 @@ sub zilla {
   require Dist::Zilla::Dist::Builder;
 
   return $self->{'' . __PACKAGE__}{zilla} ||= do {
-    my @v_plugins = $self->global_options->verbose
-                  ? grep { length } @{ $self->global_options->verbose }
+    my @v_plugins = $self->global_options->verbose_plugin
+                  ? grep { length } @{ $self->global_options->verbose_plugin }
                   : ();
 
-    my $verbose = $self->global_options->verbose && ! @v_plugins;
+    my $verbose = $self->global_options->verbose;
 
     $self->chrome->logger->set_debug($verbose ? 1 : 0);
 
@@ -172,7 +173,7 @@ Dist::Zilla::App - Dist::Zilla's App::Cmd
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 METHODS
 

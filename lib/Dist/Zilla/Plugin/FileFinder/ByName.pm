@@ -1,6 +1,6 @@
-package Dist::Zilla::Plugin::FileFinder::ByName;
+package Dist::Zilla::Plugin::FileFinder::ByName 6.001;
 # ABSTRACT: FileFinder matching on pathnames
-$Dist::Zilla::Plugin::FileFinder::ByName::VERSION = '5.047';
+
 use Moose;
 with 'Dist::Zilla::Role::FileFinder';
 
@@ -180,7 +180,7 @@ Dist::Zilla::Plugin::FileFinder::ByName - FileFinder matching on pathnames
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 SYNOPSIS
 

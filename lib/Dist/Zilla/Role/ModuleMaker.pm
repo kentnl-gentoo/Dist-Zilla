@@ -1,6 +1,6 @@
-package Dist::Zilla::Role::ModuleMaker;
+package Dist::Zilla::Role::ModuleMaker 6.001;
 # ABSTRACT: something that injects module files into the dist
-$Dist::Zilla::Role::ModuleMaker::VERSION = '5.047';
+
 use Moose::Role;
 with qw(
   Dist::Zilla::Role::Plugin
@@ -39,7 +39,7 @@ Dist::Zilla::Role::ModuleMaker - something that injects module files into the di
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 DESCRIPTION
 

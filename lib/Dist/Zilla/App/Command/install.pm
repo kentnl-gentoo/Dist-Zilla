@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::App::Command::install;
+package Dist::Zilla::App::Command::install 6.001;
 # ABSTRACT: install your dist
-$Dist::Zilla::App::Command::install::VERSION = '5.047';
+
 use Dist::Zilla::App -command;
 
 #pod =head1 SYNOPSIS
@@ -70,7 +70,7 @@ Dist::Zilla::App::Command::install - install your dist
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 SYNOPSIS
 

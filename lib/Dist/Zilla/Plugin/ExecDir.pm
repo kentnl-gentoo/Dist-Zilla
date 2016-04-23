@@ -1,6 +1,6 @@
-package Dist::Zilla::Plugin::ExecDir;
+package Dist::Zilla::Plugin::ExecDir 6.001;
 # ABSTRACT: install a directory's contents as executables
-$Dist::Zilla::Plugin::ExecDir::VERSION = '5.047';
+
 use Moose;
 
 use namespace::autoclean;
@@ -47,7 +47,7 @@ Dist::Zilla::Plugin::ExecDir - install a directory's contents as executables
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 SYNOPSIS
 

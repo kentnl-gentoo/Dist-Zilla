@@ -67,14 +67,12 @@ do { my $x = {
                                       'MooseX::SetOnce' => '0',
                                       'MooseX::Types' => '0',
                                       'MooseX::Types::Moose' => '0',
-                                      'MooseX::Types::Path::Class' => '0',
                                       'MooseX::Types::Perl' => '0',
                                       'PPI::Document' => '0',
                                       'Params::Util' => '0',
-                                      'Path::Class' => '0.22',
+                                      'Path::Class' => '0',
                                       'Path::Tiny' => '0.052',
                                       'Perl::PrereqScanner' => '1.016',
-                                      'Perl::Version' => '0',
                                       'Pod::Eventual' => '0.091480',
                                       'Scalar::Util' => '0',
                                       'Software::License' => '0.101370',
@@ -96,8 +94,9 @@ do { my $x = {
                                       'autodie' => '0',
                                       'namespace::autoclean' => '0',
                                       'parent' => '0',
-                                      'perl' => 'v5.8.5',
+                                      'perl' => 'v5.14.0',
                                       'strict' => '0',
+                                      'utf8' => '0',
                                       'version' => '0',
                                       'warnings' => '0'
                                     },
@@ -120,8 +119,7 @@ do { my $x = {
                                    'Test::Fatal' => '0',
                                    'Test::File::ShareDir' => '0',
                                    'Test::More' => '0.96',
-                                   'lib' => '0',
-                                   'utf8' => '0'
+                                   'lib' => '0'
                                  }
                  }
      };

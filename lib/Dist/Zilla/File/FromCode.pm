@@ -1,6 +1,6 @@
-package Dist::Zilla::File::FromCode;
+package Dist::Zilla::File::FromCode 6.001;
 # ABSTRACT: a file whose content is (re-)built on demand
-$Dist::Zilla::File::FromCode::VERSION = '5.047';
+
 use Moose;
 use Moose::Util::TypeConstraints;
 
@@ -116,7 +116,7 @@ Dist::Zilla::File::FromCode - a file whose content is (re-)built on demand
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 DESCRIPTION
 

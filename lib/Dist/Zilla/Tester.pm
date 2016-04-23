@@ -1,6 +1,6 @@
-package Dist::Zilla::Tester;
+package Dist::Zilla::Tester 6.001;
 # ABSTRACT: a testing-enabling stand-in for Dist::Zilla
-$Dist::Zilla::Tester::VERSION = '5.047';
+
 use Moose;
 extends 'Dist::Zilla::Dist::Builder';
 
@@ -13,7 +13,7 @@ use Dist::Zilla::Chrome::Test;
 use File::pushd ();
 use File::Spec;
 use File::Temp;
-use Path::Tiny 0.052;
+use Dist::Zilla::Path;
 
 use Sub::Exporter::Util ();
 use Sub::Exporter -setup => {
@@ -93,16 +93,16 @@ sub minter { 'Dist::Zilla::Tester::_Minter' }
   sub slurp_file {
     my ($self, $filename) = @_;
 
-    Path::Tiny::path(
-      $self->tempdir->file($filename)
+    Dist::Zilla::Path::path(
+      $self->tempdir->child($filename)
     )->slurp_utf8;
   }
 
   sub slurp_file_raw {
     my ($self, $filename) = @_;
 
-    Path::Tiny::path(
-      $self->tempdir->file($filename)
+    Dist::Zilla::Path::path(
+      $self->tempdir->child($filename)
     )->slurp_raw;
   }
 
@@ -112,14 +112,14 @@ sub minter { 'Dist::Zilla::Tester::_Minter' }
 }
 
 {
-  package Dist::Zilla::Tester::_Builder;
-$Dist::Zilla::Tester::_Builder::VERSION = '5.047';
-use Moose;
+  package Dist::Zilla::Tester::_Builder 6.001;
+
+  use Moose;
   extends 'Dist::Zilla::Dist::Builder';
   with 'Dist::Zilla::Tester::_Role';
 
   use File::Copy::Recursive qw(dircopy);
-  use Path::Class;
+  use Dist::Zilla::Path;
 
   our $Log_Events = [];
   sub most_recent_log_events {
@@ -143,27 +143,26 @@ use Moose;
         CLEANUP => 1,
         (defined $tempdir_root ? (DIR => $tempdir_root) : ()),
     );
-    my $tempdir = dir($tempdir_obj)->absolute;
+    my $tempdir = path($tempdir_obj)->absolute;
 
-    my $root = $tempdir->subdir('source');
+    my $root = $tempdir->child('source');
     $root->mkpath;
 
     dircopy($source, $root);
 
     if ($tester_arg->{also_copy}) {
       while (my ($src, $dest) = each %{ $tester_arg->{also_copy} }) {
-        dircopy($src, $tempdir->subdir($dest));
+        dircopy($src, $tempdir->child($dest));
       }
     }
 
     if (my $files = $tester_arg->{add_files}) {
       while (my ($name, $content) = each %$files) {
-        die "File name '$name' does not seem to be legal on the current OS"
-          if !path_looks_legal($name);
-        my $unix_name = Path::Class::File->new_foreign("Unix", $name);
-        my $fn = $tempdir->file($unix_name);
-        $fn->dir->mkpath;
-        Path::Tiny::path($fn)->spew_utf8($content);
+        die "Unix path '$name' does not seem to be portable to the current OS"
+          if !unix_path_seems_portable($name);
+        my $fn = $tempdir->child($name);
+        $fn->parent->mkpath;
+        Dist::Zilla::Path::path($fn)->spew_utf8($content);
       }
     }
 
@@ -195,7 +194,7 @@ use Moose;
     my $wd = File::pushd::pushd($self->root);
 
     $target ||= do {
-      my $target = dir($self->tempdir)->subdir('build');
+      my $target = path($self->tempdir)->child('build');
       $target->mkpath;
       $target;
     };
@@ -215,25 +214,34 @@ use Moose;
 
   no Moose;
 
-  sub path_looks_legal {
-    return 1 if $^O eq "linux";
-    my ($path) = @_;
-    my $unix_path = Path::Class::File->new_foreign("Unix", $path)->stringify;
-    return 0 if $path ne $unix_path;
-    my $round_tripped = file($path)->as_foreign("Unix")->stringify;
-    return $path eq $round_tripped;
+  sub unix_path_seems_portable {
+    return 1 if $^O eq "linux"; # this check only makes sense on non-unixes
+
+    my ($unix_path) = @_;
+
+    # split the  $unix_path into 3 strings: $volume, $directories, $file; with:
+    my @native_parts = File::Spec->splitpath($unix_path); # current OS rules
+    my @unix_parts = File::Spec::Unix->splitpath($unix_path); # unix rules
+    return unless join(qq{\0}, @native_parts) eq join(qq{\0}, @unix_parts);
+
+    # split the $directories string into a list of the sub-directories; with:
+    my @native_dirs = File::Spec->splitdir($native_parts[1]); # current OS rules
+    my @unix_dirs = File::Spec::Unix->splitdir($unix_parts[1]); # unix rules
+    return unless join(qq{\0}, @native_dirs) eq join(qq{\0}, @unix_dirs);
+
+    return 1;
   }
 }
 
 {
-  package Dist::Zilla::Tester::_Minter;
-$Dist::Zilla::Tester::_Minter::VERSION = '5.047';
-use Moose;
+  package Dist::Zilla::Tester::_Minter 6.001;
+
+  use Moose;
   extends 'Dist::Zilla::Dist::Minter';
   with 'Dist::Zilla::Tester::_Role';
 
   use File::Copy::Recursive qw(dircopy);
-  use Path::Class;
+  use Dist::Zilla::Path;
 
   our $Log_Events = [];
   sub most_recent_log_events {
@@ -244,7 +252,7 @@ use Moose;
     my ($self) = @_;
 
     my $name = $self->name;
-    my $dir  = $self->tempdir->subdir('mint')->absolute;
+    my $dir  = $self->tempdir->child('mint')->absolute;
 
     $self->log_fatal("$dir already exists") if -e $dir;
 
@@ -254,7 +262,7 @@ use Moose;
   sub _setup_global_config {
     my ($self, $dir, $arg) = @_;
 
-    my $config_base = $dir->file('config');
+    my $config_base = path($dir)->child('config');
 
     my $stash_registry = {};
 
@@ -287,14 +295,14 @@ use Moose;
         CLEANUP => 1,
         (defined $tempdir_root ? (DIR => $tempdir_root) : ()),
     );
-    my $tempdir = dir($tempdir_obj)->absolute;
+    my $tempdir = path($tempdir_obj)->absolute;
 
     local $arg->{chrome} = Dist::Zilla::Chrome::Test->new;
     $Log_Events = $arg->{chrome}->logger->events;
 
     local @INC = map {; ref($_) ? $_ : File::Spec->rel2abs($_) } @INC;
 
-    my $global_config_root = Path::Class::dir($tester_arg->{global_config_root})->absolute;
+    my $global_config_root = path($tester_arg->{global_config_root})->absolute;
 
     local $ENV{DZIL_GLOBAL_CONFIG_ROOT} = $global_config_root;
 
@@ -331,7 +339,7 @@ Dist::Zilla::Tester - a testing-enabling stand-in for Dist::Zilla
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 AUTHOR
 

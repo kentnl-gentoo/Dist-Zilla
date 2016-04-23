@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::App::Tester;
+package Dist::Zilla::App::Tester 6.001;
 # ABSTRACT: testing library for Dist::Zilla::App
-$Dist::Zilla::App::Tester::VERSION = '5.047';
+
 use parent 'App::Cmd::Tester::CaptureExternal';
 use App::Cmd::Tester 0.306 (); # result_class, ->app
 
@@ -11,7 +11,7 @@ use File::Copy::Recursive qw(dircopy);
 use File::pushd ();
 use File::Spec;
 use File::Temp;
-use Path::Class;
+use Dist::Zilla::Path;
 
 use Sub::Exporter::Util ();
 use Sub::Exporter -setup => {
@@ -28,7 +28,7 @@ sub test_dzil {
   local @INC = map {; ref($_) ? $_ : File::Spec->rel2abs($_) } @INC;
 
   my $tmpdir = $arg->{tempdir} || File::Temp::tempdir(CLEANUP => 1);
-  my $root   = dir($tmpdir)->subdir('source');
+  my $root   = path($tmpdir)->child('source');
   $root->mkpath;
 
   dircopy($source, $root);
@@ -43,9 +43,9 @@ sub test_dzil {
 }
 
 {
-  package Dist::Zilla::App::Tester::Result;
-$Dist::Zilla::App::Tester::Result::VERSION = '5.047';
-BEGIN { our @ISA = qw(App::Cmd::Tester::Result); }
+  package Dist::Zilla::App::Tester::Result 6.001;
+
+  BEGIN { our @ISA = qw(App::Cmd::Tester::Result); }
 
   sub tempdir {
     my ($self) = @_;
@@ -93,7 +93,7 @@ Dist::Zilla::App::Tester - testing library for Dist::Zilla::App
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 AUTHOR
 

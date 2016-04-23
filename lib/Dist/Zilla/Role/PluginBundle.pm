@@ -1,6 +1,6 @@
-package Dist::Zilla::Role::PluginBundle;
+package Dist::Zilla::Role::PluginBundle 6.001;
 # ABSTRACT: something that bundles a bunch of plugins
-$Dist::Zilla::Role::PluginBundle::VERSION = '5.047';
+
 use Moose::Role;
 
 use namespace::autoclean;
@@ -36,7 +36,7 @@ Dist::Zilla::Role::PluginBundle - something that bundles a bunch of plugins
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 DESCRIPTION
 

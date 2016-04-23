@@ -1,9 +1,9 @@
-package Dist::Zilla::File::OnDisk;
+package Dist::Zilla::File::OnDisk 6.001;
 # ABSTRACT: a file that comes from your filesystem
-$Dist::Zilla::File::OnDisk::VERSION = '5.047';
+
 use Moose;
 
-use Path::Tiny;
+use Dist::Zilla::Path;
 
 use namespace::autoclean;
 
@@ -55,7 +55,7 @@ Dist::Zilla::File::OnDisk - a file that comes from your filesystem
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 DESCRIPTION
 

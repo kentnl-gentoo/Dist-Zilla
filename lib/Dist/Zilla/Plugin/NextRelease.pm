@@ -1,6 +1,6 @@
-package Dist::Zilla::Plugin::NextRelease;
+package Dist::Zilla::Plugin::NextRelease 6.001;
 # ABSTRACT: update the next release number in your changelog
-$Dist::Zilla::Plugin::NextRelease::VERSION = '5.047';
+
 use namespace::autoclean;
 
 use Moose;
@@ -10,7 +10,7 @@ with (
   'Dist::Zilla::Role::AfterRelease',
 );
 
-use Path::Tiny;
+use Dist::Zilla::Path;
 use Moose::Util::TypeConstraints;
 use List::Util 'first';
 use String::Formatter 0.100680 stringf => {
@@ -32,10 +32,10 @@ use String::Formatter 0.100680 stringf => {
     E => sub { $_[0]->_user_info('email') },
     U => sub { $_[0]->_user_info('name')  },
     T => sub { $_[0]->zilla->is_trial
-                   ? (defined $_[1] ? $_[1] : '-TRIAL') : '' },
+                   ? ($_[1] // '-TRIAL') : '' },
     V => sub { $_[0]->zilla->version
                 . ($_[0]->zilla->is_trial
-                   ? (defined $_[1] ? $_[1] : '-TRIAL') : '') },
+                   ? ($_[1] // '-TRIAL') : '') },
     P => sub {
       my $releaser = first { $_->can('cpanid') } @{ $_[0]->zilla->plugins_with('-Releaser') };
       $_[0]->log_fatal('releaser doesn\'t provide cpanid, but %P used') unless $releaser;
@@ -281,7 +281,7 @@ Dist::Zilla::Plugin::NextRelease - update the next release number in your change
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 SYNOPSIS
 

@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::App::Command::authordeps;
+package Dist::Zilla::App::Command::authordeps 6.001;
 # ABSTRACT: List your distribution's author dependencies
-$Dist::Zilla::App::Command::authordeps::VERSION = '5.047';
+
 use Dist::Zilla::App -command;
 
 #pod =head1 SYNOPSIS
@@ -31,16 +31,16 @@ sub opt_spec {
 sub execute {
   my ($self, $opt, $arg) = @_;
 
-  require Path::Class;
+  require Dist::Zilla::Path;
   require Dist::Zilla::Util::AuthorDeps;
 
-  my $deps =
-    Dist::Zilla::Util::AuthorDeps::format_author_deps(
-      Dist::Zilla::Util::AuthorDeps::extract_author_deps(
-        Path::Class::dir(defined $opt->root ? $opt->root : '.'),
-        $opt->missing,
-      ), $opt->versions
-    );
+  my $deps = Dist::Zilla::Util::AuthorDeps::format_author_deps(
+    Dist::Zilla::Util::AuthorDeps::extract_author_deps(
+      Dist::Zilla::Path::path($opt->root // '.'),
+      $opt->missing,
+    ), $opt->versions
+  );
+
   $self->log($deps) if $deps;
 
   return;
@@ -60,7 +60,7 @@ Dist::Zilla::App::Command::authordeps - List your distribution's author dependen
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 SYNOPSIS
 

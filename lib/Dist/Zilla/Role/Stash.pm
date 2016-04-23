@@ -1,6 +1,6 @@
-package Dist::Zilla::Role::Stash;
+package Dist::Zilla::Role::Stash 6.001;
 # ABSTRACT: something that stores options or data for later reference
-$Dist::Zilla::Role::Stash::VERSION = '5.047';
+
 use Moose::Role;
 
 use namespace::autoclean;
@@ -37,7 +37,7 @@ Dist::Zilla::Role::Stash - something that stores options or data for later refer
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 AUTHOR
 

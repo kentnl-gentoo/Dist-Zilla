@@ -1,6 +1,6 @@
-package Dist::Zilla::Stash::Mint;
+package Dist::Zilla::Stash::Mint 6.001;
 # ABSTRACT: a stash of your default minting provider/profile
-$Dist::Zilla::Stash::Mint::VERSION = '5.047';
+
 use Moose;
 with 'Dist::Zilla::Role::Stash';
 
@@ -35,7 +35,7 @@ Dist::Zilla::Stash::Mint - a stash of your default minting provider/profile
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 AUTHOR
 

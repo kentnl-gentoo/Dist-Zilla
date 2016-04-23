@@ -1,6 +1,6 @@
-package Dist::Zilla::Plugin::MetaYAML;
+package Dist::Zilla::Plugin::MetaYAML 6.001;
 # ABSTRACT: produce a META.yml
-$Dist::Zilla::Plugin::MetaYAML::VERSION = '5.047';
+
 use Moose;
 with 'Dist::Zilla::Role::FileGatherer';
 
@@ -117,7 +117,7 @@ Dist::Zilla::Plugin::MetaYAML - produce a META.yml
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 DESCRIPTION
 

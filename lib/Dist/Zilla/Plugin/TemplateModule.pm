@@ -1,10 +1,10 @@
-package Dist::Zilla::Plugin::TemplateModule;
+package Dist::Zilla::Plugin::TemplateModule 6.001;
 # ABSTRACT: a simple module-from-template plugin
-$Dist::Zilla::Plugin::TemplateModule::VERSION = '5.047';
+
 use Moose;
 with qw(Dist::Zilla::Role::ModuleMaker Dist::Zilla::Role::TextTemplate);
 
-use Path::Tiny;
+use Dist::Zilla::Path;
 
 use namespace::autoclean;
 
@@ -84,7 +84,7 @@ sub make_module {
     },
   );
 
-  (my $filename = $arg->{name}) =~ s{::}{/}g;
+  my $filename = $arg->{name} =~ s{::}{/}gr;
 
   my $file = Dist::Zilla::File::InMemory->new({
     name    => "lib/$filename.pm",
@@ -107,7 +107,7 @@ Dist::Zilla::Plugin::TemplateModule - a simple module-from-template plugin
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 DESCRIPTION
 

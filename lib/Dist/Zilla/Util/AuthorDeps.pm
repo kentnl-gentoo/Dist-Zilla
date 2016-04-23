@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::Util::AuthorDeps;
+package Dist::Zilla::Util::AuthorDeps 6.001;
 # ABSTRACT: Utils for listing your distribution's author dependencies
-$Dist::Zilla::Util::AuthorDeps::VERSION = '5.047';
+
 use Dist::Zilla::Util;
 use Path::Tiny;
 use List::Util 1.45 ();
@@ -74,7 +74,7 @@ sub extract_author_deps {
     chomp;
     next unless /\A\s*;\s*authordep\s*(\S+)\s*(?:=\s*([^;]+))?\s*/;
     my $module = $1;
-    my $ver = defined $2 ? $2 : "0";
+    my $ver = $2 // "0";
     $ver =~ s/\s+$//;
     # Any "; authordep " is inserted at the beginning of the list
     # in the file order so the user can control the order of at least a part of
@@ -129,7 +129,7 @@ Dist::Zilla::Util::AuthorDeps - Utils for listing your distribution's author dep
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 AUTHOR
 

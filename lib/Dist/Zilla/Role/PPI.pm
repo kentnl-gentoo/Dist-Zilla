@@ -1,6 +1,6 @@
-package Dist::Zilla::Role::PPI;
+package Dist::Zilla::Role::PPI 6.001;
 # ABSTRACT: a role for plugins which use PPI
-$Dist::Zilla::Role::PPI::VERSION = '5.047';
+
 use Moose::Role;
 use Digest::MD5 qw(md5);
 use namespace::autoclean;
@@ -123,7 +123,7 @@ Dist::Zilla::Role::PPI - a role for plugins which use PPI
 
 =head1 VERSION
 
-version 5.047
+version 6.001
 
 =head1 DESCRIPTION
 
