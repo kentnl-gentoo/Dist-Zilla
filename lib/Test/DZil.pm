@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Test::DZil 6.001;
+package Test::DZil;
 # ABSTRACT: tools for testing Dist::Zilla plugins
-
+$Test::DZil::VERSION = '6.005';
 use Params::Util qw(_HASH0);
 use JSON::MaybeXS;
 use Scalar::Util qw(blessed);
@@ -251,7 +251,7 @@ Test::DZil - tools for testing Dist::Zilla plugins
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 DESCRIPTION
 
@@ -350,7 +350,7 @@ The starter config may change slightly over time, but is something like this:
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

@@ -1,6 +1,6 @@
-package Dist::Zilla 6.001;
+package Dist::Zilla;
 # ABSTRACT: distribution builder; installer not included!
-
+$Dist::Zilla::VERSION = '6.005';
 use Moose 0.92; # role composition fixes
 with 'Dist::Zilla::Role::ConfigDumper';
 
@@ -509,7 +509,7 @@ sub prune_file {
 
 #pod =attr root
 #pod
-#pod This is the root directory of the dist, as a L<Path::Class::Dir>.  It will
+#pod This is the root directory of the dist, as a L<Path::Tiny>.  It will
 #pod nearly always be the current working directory in which C<dzil> was run.
 #pod
 #pod =cut
@@ -888,7 +888,7 @@ Dist::Zilla - distribution builder; installer not included!
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 DESCRIPTION
 
@@ -993,7 +993,7 @@ for storing files B<will be changed>.
 
 =head2 root
 
-This is the root directory of the dist, as a L<Path::Class::Dir>.  It will
+This is the root directory of the dist, as a L<Path::Tiny>.  It will
 nearly always be the current working directory in which C<dzil> was run.
 
 =head2 is_trial
@@ -1156,7 +1156,7 @@ Search for plugin bundles: L<https://metacpan.org/search?q=Dist::Zilla::PluginBu
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 CONTRIBUTORS
 

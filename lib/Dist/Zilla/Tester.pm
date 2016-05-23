@@ -1,6 +1,6 @@
-package Dist::Zilla::Tester 6.001;
+package Dist::Zilla::Tester;
 # ABSTRACT: a testing-enabling stand-in for Dist::Zilla
-
+$Dist::Zilla::Tester::VERSION = '6.005';
 use Moose;
 extends 'Dist::Zilla::Dist::Builder';
 
@@ -112,9 +112,9 @@ sub minter { 'Dist::Zilla::Tester::_Minter' }
 }
 
 {
-  package Dist::Zilla::Tester::_Builder 6.001;
-
-  use Moose;
+  package Dist::Zilla::Tester::_Builder;
+$Dist::Zilla::Tester::_Builder::VERSION = '6.005';
+use Moose;
   extends 'Dist::Zilla::Dist::Builder';
   with 'Dist::Zilla::Tester::_Role';
 
@@ -140,10 +140,11 @@ sub minter { 'Dist::Zilla::Tester::_Minter' }
     mkdir $tempdir_root if defined $tempdir_root and not -d $tempdir_root;
 
     my $tempdir_obj = File::Temp->newdir(
-        CLEANUP => 1,
-        (defined $tempdir_root ? (DIR => $tempdir_root) : ()),
+      CLEANUP => 1,
+      (defined $tempdir_root ? (DIR => $tempdir_root) : ()),
     );
-    my $tempdir = path($tempdir_obj)->absolute;
+
+    my $tempdir = path( path($tempdir_obj)->absolute) ;
 
     my $root = $tempdir->child('source');
     $root->mkpath;
@@ -171,7 +172,22 @@ sub minter { 'Dist::Zilla::Tester::_Minter' }
 
     $Log_Events = $arg->{chrome}->logger->events;
 
-    local @INC = map {; ref($_) ? $_ : File::Spec->rel2abs($_) } @INC;
+    local @INC = @INC;
+
+    my $had_dot;
+    if ($INC[-1] eq '.') {
+      $had_dot = 1;
+      pop @INC;
+    }
+
+    @INC = map {; ref($_) ? $_ : File::Spec->rel2abs($_) } @INC;
+
+    push @INC, '.' if $had_dot;
+
+    # We do this so that . in @INC will find plugins like [=inc::YourFace]
+    # -- rjbs, 2016-04-24
+    my $wd = File::pushd::pushd($arg->{dist_root});
+
 
     local $ENV{DZIL_GLOBAL_CONFIG_ROOT};
     $ENV{DZIL_GLOBAL_CONFIG_ROOT} = $tester_arg->{global_config_root}
@@ -234,9 +250,9 @@ sub minter { 'Dist::Zilla::Tester::_Minter' }
 }
 
 {
-  package Dist::Zilla::Tester::_Minter 6.001;
-
-  use Moose;
+  package Dist::Zilla::Tester::_Minter;
+$Dist::Zilla::Tester::_Minter::VERSION = '6.005';
+use Moose;
   extends 'Dist::Zilla::Dist::Minter';
   with 'Dist::Zilla::Tester::_Role';
 
@@ -339,11 +355,11 @@ Dist::Zilla::Tester - a testing-enabling stand-in for Dist::Zilla
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

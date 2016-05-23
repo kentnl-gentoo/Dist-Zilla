@@ -1,6 +1,6 @@
-package Dist::Zilla::Plugin::TemplateModule 6.001;
+package Dist::Zilla::Plugin::TemplateModule;
 # ABSTRACT: a simple module-from-template plugin
-
+$Dist::Zilla::Plugin::TemplateModule::VERSION = '6.005';
 use Moose;
 with qw(Dist::Zilla::Role::ModuleMaker Dist::Zilla::Role::TextTemplate);
 
@@ -107,7 +107,7 @@ Dist::Zilla::Plugin::TemplateModule - a simple module-from-template plugin
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 DESCRIPTION
 
@@ -154,7 +154,7 @@ presently required:
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

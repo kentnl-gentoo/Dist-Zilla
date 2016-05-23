@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::Util 6.001;
+package Dist::Zilla::Util;
 # ABSTRACT: random snippets of code that Dist::Zilla wants
-
+$Dist::Zilla::Util::VERSION = '6.005';
 use Carp ();
 use Encode ();
 
@@ -145,7 +145,7 @@ Dist::Zilla::Util - random snippets of code that Dist::Zilla wants
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 METHODS
 
@@ -186,7 +186,7 @@ otherwise, C<Dist::Zilla::Plugin::> is prepended
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

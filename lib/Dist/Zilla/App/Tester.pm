@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::App::Tester 6.001;
+package Dist::Zilla::App::Tester;
 # ABSTRACT: testing library for Dist::Zilla::App
-
+$Dist::Zilla::App::Tester::VERSION = '6.005';
 use parent 'App::Cmd::Tester::CaptureExternal';
 use App::Cmd::Tester 0.306 (); # result_class, ->app
 
@@ -43,9 +43,9 @@ sub test_dzil {
 }
 
 {
-  package Dist::Zilla::App::Tester::Result 6.001;
-
-  BEGIN { our @ISA = qw(App::Cmd::Tester::Result); }
+  package Dist::Zilla::App::Tester::Result;
+$Dist::Zilla::App::Tester::Result::VERSION = '6.005';
+BEGIN { our @ISA = qw(App::Cmd::Tester::Result); }
 
   sub tempdir {
     my ($self) = @_;
@@ -93,11 +93,11 @@ Dist::Zilla::App::Tester - testing library for Dist::Zilla::App
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

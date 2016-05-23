@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::App 6.001;
+package Dist::Zilla::App;
 # ABSTRACT: Dist::Zilla's App::Cmd
-
+$Dist::Zilla::App::VERSION = '6.005';
 use App::Cmd::Setup 0.330 -app; # better compilation error detection
 
 use Carp ();
@@ -173,7 +173,7 @@ Dist::Zilla::App - Dist::Zilla's App::Cmd
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 METHODS
 
@@ -184,7 +184,7 @@ been constructed, one will be by calling C<< Dist::Zilla->from_config >>.
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

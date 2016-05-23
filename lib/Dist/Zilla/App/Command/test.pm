@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::App::Command::test 6.001;
+package Dist::Zilla::App::Command::test;
 # ABSTRACT: test your dist
-
+$Dist::Zilla::App::Command::test::VERSION = '6.005';
 use Dist::Zilla::App -command;
 
 #pod =head1 SYNOPSIS
@@ -100,7 +100,7 @@ Dist::Zilla::App::Command::test - test your dist
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 SYNOPSIS
 
@@ -147,7 +147,7 @@ Equivalent to --release --automated --extended --author
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

@@ -1,6 +1,6 @@
-package Dist::Zilla::Chrome::Term 6.001;
+package Dist::Zilla::Chrome::Term;
 # ABSTRACT: chrome used for terminal-based interaction
-
+$Dist::Zilla::Chrome::Term::VERSION = '6.005';
 use Moose;
 
 #pod =head1 OVERVIEW
@@ -21,7 +21,8 @@ has logger => (
   isa => 'Log::Dispatchouli',
   init_arg => undef,
   writer   => '_set_logger',
-  lazy_build => 1,
+  lazy => 1,
+  builder => '_build_logger',
 );
 
 sub _build_logger {
@@ -152,7 +153,7 @@ Dist::Zilla::Chrome::Term - chrome used for terminal-based interaction
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 OVERVIEW
 
@@ -161,7 +162,7 @@ terminal environment.  It's the default chrome used by L<Dist::Zilla::App>.
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

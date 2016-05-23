@@ -17,8 +17,18 @@ SKIP: {
 my $breaks = {
   "Dist::Zilla::App::Command::stale" => "< 0.040",
   "Dist::Zilla::App::Command::update" => "<= 0.04",
+  "Dist::Zilla::Plugin::Author::Plicease::Tests" => "<= 2.02",
+  "Dist::Zilla::Plugin::CopyFilesFromBuild" => "< 0.161230",
+  "Dist::Zilla::Plugin::CopyFilesFromBuild::Filtered" => "<= 0.001",
+  "Dist::Zilla::Plugin::Keywords" => "<= 0.006",
   "Dist::Zilla::Plugin::MakeMaker::Awesome" => "< 0.22",
+  "Dist::Zilla::Plugin::PodWeaver" => "<= 4.006",
+  "Dist::Zilla::Plugin::Prereqs::AuthorDeps" => "<= 0.005",
+  "Dist::Zilla::Plugin::ReadmeAnyFromPod" => "< 0.161170",
+  "Dist::Zilla::Plugin::RepoFileInjector" => "<= 0.005",
   "Dist::Zilla::Plugin::Run" => "<= 0.035",
+  "Dist::Zilla::Plugin::Test::CheckDeps" => "<= 0.013",
+  "Dist::Zilla::Plugin::Test::Version" => "<= 1.05",
   "Dist::Zilla::Plugin::TrialVersionComment" => "<= 0.003"
 };
 

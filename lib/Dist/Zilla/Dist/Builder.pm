@@ -1,6 +1,6 @@
-package Dist::Zilla::Dist::Builder 6.001;
+package Dist::Zilla::Dist::Builder;
 # ABSTRACT: dist zilla subclass for building dists
-
+$Dist::Zilla::Dist::Builder::VERSION = '6.005';
 use Moose 0.92; # role composition fixes
 extends 'Dist::Zilla';
 
@@ -874,7 +874,7 @@ Dist::Zilla::Dist::Builder - dist zilla subclass for building dists
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 ATTRIBUTES
 
@@ -1024,7 +1024,7 @@ non-zero, the directory will be left in place.
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

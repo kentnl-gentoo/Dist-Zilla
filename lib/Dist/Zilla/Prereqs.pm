@@ -1,6 +1,6 @@
-package Dist::Zilla::Prereqs 6.001;
+package Dist::Zilla::Prereqs;
 # ABSTRACT: the prerequisites of a Dist::Zilla distribution
-
+$Dist::Zilla::Prereqs::VERSION = '6.005';
 use Moose;
 use MooseX::Types::Moose qw(Bool HashRef);
 
@@ -142,7 +142,7 @@ Dist::Zilla::Prereqs - the prerequisites of a Dist::Zilla distribution
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 DESCRIPTION
 
@@ -202,7 +202,7 @@ If not given, phase and type default to runtime and requires, respectively.
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

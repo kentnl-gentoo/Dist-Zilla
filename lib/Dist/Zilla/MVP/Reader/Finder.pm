@@ -1,6 +1,6 @@
-package Dist::Zilla::MVP::Reader::Finder 6.001;
+package Dist::Zilla::MVP::Reader::Finder;
 # ABSTRACT: the reader for dist.ini files
-
+$Dist::Zilla::MVP::Reader::Finder::VERSION = '6.005';
 use Moose;
 use Config::MVP::Reader 2.101540; # if_none
 extends 'Config::MVP::Reader::Finder';
@@ -28,11 +28,11 @@ Dist::Zilla::MVP::Reader::Finder - the reader for dist.ini files
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

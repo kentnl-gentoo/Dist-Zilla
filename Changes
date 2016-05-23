@@ -1,5 +1,22 @@
 Revision history for Dist-Zilla
 
+6.005     2016-05-23 08:08:15-04:00 America/New_York
+        - NextRelease now dies if there's no changelog file found
+          (thanks, Karen Etheridge)
+        - Module::Runtime replaces Class::Load (thanks Olivier Mengué)
+
+6.004     2016-05-14 09:14:19-04:00 America/New_York (TRIAL RELEASE)
+        - stop listing Path::Class as a prereq (thanks, Karen Etheridge)
+        - update docs on path types (thanks, Graham Ollis)
+
+6.003     2016-04-24 19:23:46+01:00 Europe/London (TRIAL RELEASE)
+        - leading BOM (FEFF) is stripped on UTF-8 content
+        - PPI now handles characters, not bytes, fixing non-ASCII
+          non-comments in your source
+
+6.002     2016-04-23 17:50:26+01:00 Europe/London (TRIAL RELEASE)
+        - tweaks to Dist::Zilla::Path to keep plugins from v5 era working
+
 6.001     2016-04-23 13:21:56+01:00 Europe/London
         [THIS RELEASE MIGHT BREAK YOUR BUILD]
         - Using a Dist::Zilla::Path like a Path::Class object now issues a
@@ -22,6 +39,13 @@ Revision history for Dist-Zilla
         - [PkgVersion] now supports a use_package argument which will put the
           version in the package statement.  (Remember that this syntax was
           introduced in perl v5.12.0.)
+
+        - Dist::Zilla now requires perl v5.14.0.  It will still happily build
+          dists that run on whatever version of perl you like.
+
+5.047     2016-04-23 16:20:13+01:00 Europe/London
+        - cast things to Path::Class as needed, for now, for v6 backcompat
+          (don't expect more commits like this)
 
 5.046     2016-04-22 15:50:27+01:00 Europe/London
         - avoid using syntax that is called ambiguous on older perls

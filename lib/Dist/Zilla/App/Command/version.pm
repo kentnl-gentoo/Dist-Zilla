@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::App::Command::version 6.001;
+package Dist::Zilla::App::Command::version;
 # ABSTRACT: display dzil's version
-
+$Dist::Zilla::App::Command::version::VERSION = '6.005';
 use Dist::Zilla::App -command;
 use App::Cmd::Command::version;
 BEGIN {
@@ -40,7 +40,7 @@ Dist::Zilla::App::Command::version - display dzil's version
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 SYNOPSIS
 
@@ -50,7 +50,7 @@ Print dzil version
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::App::Command::authordeps 6.001;
+package Dist::Zilla::App::Command::authordeps;
 # ABSTRACT: List your distribution's author dependencies
-
+$Dist::Zilla::App::Command::authordeps::VERSION = '6.005';
 use Dist::Zilla::App -command;
 
 #pod =head1 SYNOPSIS
@@ -60,7 +60,7 @@ Dist::Zilla::App::Command::authordeps - List your distribution's author dependen
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 SYNOPSIS
 
@@ -75,7 +75,7 @@ results by using special comments in the form:
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

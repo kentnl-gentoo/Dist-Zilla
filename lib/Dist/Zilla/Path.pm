@@ -2,9 +2,9 @@ use strict;
 use warnings;
 use utf8;
 
-package Dist::Zilla::Path 6.001;
+package Dist::Zilla::Path;
 # ABSTRACT: a helper to get Path::Tiny objects
-
+$Dist::Zilla::Path::VERSION = '6.005';
 use parent 'Path::Tiny';
 
 use Path::Tiny 0.052 qw();  # issue 427
@@ -45,7 +45,7 @@ sub subdir {
   my ($self, @subdir) = @_;
   Carp::carp("->subdir called on a Dist::Zilla::Path object; this will cease to work in Dist::Zilla v7; downstream code should be updated to use Path::Tiny API, not Path::Class");
   require Path::Class;
-  Path::Class::dir($self)->file(@subdir);
+  Path::Class::dir($self)->subdir(@subdir);
 }
 
 1;
@@ -62,11 +62,11 @@ Dist::Zilla::Path - a helper to get Path::Tiny objects
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

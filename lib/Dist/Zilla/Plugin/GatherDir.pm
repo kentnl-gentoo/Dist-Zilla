@@ -1,6 +1,6 @@
-package Dist::Zilla::Plugin::GatherDir 6.001;
+package Dist::Zilla::Plugin::GatherDir;
 # ABSTRACT: gather all the files in a directory
-
+$Dist::Zilla::Plugin::GatherDir::VERSION = '6.005';
 use Moose;
 use Dist::Zilla::Types qw(Path);
 with 'Dist::Zilla::Role::FileGatherer';
@@ -255,7 +255,7 @@ Dist::Zilla::Plugin::GatherDir - gather all the files in a directory
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 DESCRIPTION
 
@@ -335,7 +335,7 @@ directories to skip.
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

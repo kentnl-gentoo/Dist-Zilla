@@ -1,8 +1,8 @@
 use strict;
 use warnings;
-package Dist::Zilla::App::Command::add 6.001;
+package Dist::Zilla::App::Command::add;
 # ABSTRACT: add a module to a dist
-
+$Dist::Zilla::App::Command::add::VERSION = '6.005';
 use Dist::Zilla::App -command;
 use Dist::Zilla::Path;
 
@@ -90,7 +90,7 @@ Dist::Zilla::App::Command::add - add a module to a dist
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 SYNOPSIS
 
@@ -103,7 +103,7 @@ provider and C<-p> - the profile name. These work just like C<dzil new>.
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

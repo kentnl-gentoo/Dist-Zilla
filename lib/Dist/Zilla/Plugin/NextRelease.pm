@@ -1,6 +1,6 @@
-package Dist::Zilla::Plugin::NextRelease 6.001;
+package Dist::Zilla::Plugin::NextRelease;
 # ABSTRACT: update the next release number in your changelog
-
+$Dist::Zilla::Plugin::NextRelease::VERSION = '6.005';
 use namespace::autoclean;
 
 use Moose;
@@ -113,7 +113,7 @@ sub munge_files {
   my ($self) = @_;
 
   my ($file) = grep { $_->name eq $self->filename } @{ $self->zilla->files };
-  return unless $file;
+  $self->log_fatal([ 'failed to find %s in the distribution', $self->filename ]) if not $file;
 
   # save original unmunged content, for replacing back in the repo later
   my $content = $self->_original_changes_content($file->content);
@@ -281,7 +281,7 @@ Dist::Zilla::Plugin::NextRelease - update the next release number in your change
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 SYNOPSIS
 
@@ -409,7 +409,7 @@ L<TextTemplate|Dist::Zilla::Role::TextTemplate>.
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

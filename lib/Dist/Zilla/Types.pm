@@ -1,6 +1,6 @@
-package Dist::Zilla::Types 6.001;
+package Dist::Zilla::Types;
 # ABSTRACT: dzil-specific type library
-
+$Dist::Zilla::Types::VERSION = '6.005';
 use namespace::autoclean;
 
 #pod =head1 OVERVIEW
@@ -54,7 +54,7 @@ Dist::Zilla::Types - dzil-specific type library
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 OVERVIEW
 
@@ -66,7 +66,7 @@ that's what you want.
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

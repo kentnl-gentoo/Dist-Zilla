@@ -1,6 +1,6 @@
-package Dist::Zilla::Plugin::TestRelease 6.001;
+package Dist::Zilla::Plugin::TestRelease;
 # ABSTRACT: extract archive and run tests before releasing the dist
-
+$Dist::Zilla::Plugin::TestRelease::VERSION = '6.005';
 use Moose;
 with 'Dist::Zilla::Role::BeforeRelease';
 
@@ -73,7 +73,7 @@ Dist::Zilla::Plugin::TestRelease - extract archive and run tests before releasin
 
 =head1 VERSION
 
-version 6.001
+version 6.005
 
 =head1 DESCRIPTION
 
@@ -92,7 +92,7 @@ This plugin was originally contributed by Christopher J. Madsen.
 
 =head1 AUTHOR
 
-Ricardo SIGNES 🎃 <rjbs@cpan.org>
+Ricardo SIGNES 😏 <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
